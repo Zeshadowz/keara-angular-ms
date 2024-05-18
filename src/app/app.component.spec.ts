@@ -17,13 +17,13 @@ describe('AppComponent', () => {
   it(`should have the 'ferbies-angular-admin-template' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ferbies-angular-admin-template');
+    expect(app.title).toEqual('keara-angular-ms');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ferbies-angular-admin-template');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, keara-angular-ms');
   });
 });

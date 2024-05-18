@@ -1,5 +1,6 @@
-# FerbiesAngularAdminTemplate
+# KEARA Angular MS
 
+KEARA Management System
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
 
 ## Development server
