@@ -1,5 +1,5 @@
 {
-  "name": "ferbies-angular-admin-template",
+  "name": "keara-angular-ms",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ferbies-angular-admin-template": "node dist/ferbies-angular-admin-template/server/server.mjs"
+    "serve:ssr:keara-angular-ms": "node dist/keara-angular-ms/server/server.mjs"
   },
   "private": true,
   "dependencies": {
