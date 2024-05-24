@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ferbies-angular-admin-template": {
+    "keara-angular-ms": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
