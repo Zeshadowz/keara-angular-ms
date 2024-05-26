@@ -1,0 +1,12 @@
+/* COLORS */
+// RGB
+$grey-8-rgb-palette: 102, 109, 119;
+$grey-9-rgb-palette: 60, 63, 70;
+//HEX
+$grey-100-palette: FFF5F5;
+
+//
+$form-title-color: rgb(var($grey-9-rgb-palette));
+$form-subtitle-color: rgb(var($grey-8-rgb-palette));
+
+$page-spacing: 10px;
