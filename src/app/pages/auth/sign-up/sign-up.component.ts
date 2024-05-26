@@ -48,7 +48,7 @@ export class SignUpComponent {
     })
   }
 
-  onLogin() {
+  proceedRegistration() {
 
   }
 
