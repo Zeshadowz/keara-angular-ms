@@ -11,7 +11,7 @@
           </span>
         </div>
       </mat-card-title>
-      <form class="signup-form" [formGroup]="form" (ngSubmit)="onLogin()">
+      <form class="signup-form" [formGroup]="registerForm" (ngSubmit)="onLogin()">
         <mat-card-content class="form-content">
           <div class="form-row" style="">
             <mat-form-field appearance="outline">
@@ -39,7 +39,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Username</mat-label>
-              <input matInput type="text" formControlName="username" required>
+              <input matInput type="text" formControlName="phone" required>
               <mat-error>Username is required</mat-error>
               <mat-error>Username is already taken</mat-error>
             </mat-form-field>
@@ -58,7 +58,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Confirm password</mat-label>
-              <input matInput type="password" formControlName="verifyPassword" required>
+              <input matInput type="password" formControlName="passwordVerification" required>
               <mat-error>Verification is required</mat-error>
               <mat-error>Password does not match</mat-error>
               <mat-error>
@@ -80,7 +80,7 @@
           </section>
         </mat-card-content>
         <div class="form-call-to-action">
-          <button mat-raised-button color="primary" class="sign-in-btn" [disabled]="!form.valid">Create
+          <button mat-raised-button color="primary" class="sign-in-btn" [disabled]="!registerForm.valid">Create
             account
           </button>
         </div>
