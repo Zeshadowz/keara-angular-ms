@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+
+:root {
+  --palette-primary-rgb: 59, 134, 255;
+  --palette-primary-light-rgb: 79, 146, 255;
+  --palette-primary-dark-rgb: 50, 114, 217;
+  --palette-primary-contrast-rgb: 246, 250, 255;
+  --palette-secondary-rgb: 56, 217, 151;
+  --palette-secondary-light-rgb: 76, 221, 161;
+  --palette-secondary-dark-rgb: 49, 191, 133;
+  --palette-secondary-contrast-rgb: 80, 70, 70;
+  --palette-tertiary-rgb: 255, 194, 0;
+  --palette-quaternary-rgb: 255, 14, 24;
+  --palette-success-rgb: 40, 167, 69;
+  --palette-success-dark-rgb: 34, 142, 59;
+  --palette-success-light-rgb: 212, 237, 218;
+  --palette-error-rgb: 220, 53, 69;
+  --palette-error-dark-rgb: 187, 45, 59;
+  --palette-error-light-rgb: 248, 215, 218;
+  --palette-warning-rgb: 235, 166, 54;
+  --palette-warning-light-rgb: 251, 237, 215;
+  --palette-info-rgb: 46, 105, 201;
+  --palette-info-light-rgb: 213, 225, 244;
+  --palette-white-rgb: 255, 255, 255;
+  --palette-facebook-rgb: 59, 89, 152;
+  --palette-facebook-dark-rgb: 50, 76, 129;
+  --palette-twitter-rgb: 0, 172, 237;
+  --palette-google-rgb: 204, 24, 30;
+  --palette-grey-0-rgb: 249, 249, 250;
+  --palette-grey-1-rgb: 236, 238, 240;
+  --palette-grey-2-rgb: 222, 225, 229;
+  --palette-grey-3-rgb: 207, 211, 218;
+  --palette-grey-4-rgb: 191, 196, 205;
+  --palette-grey-5-rgb: 173, 179, 191;
+  --palette-grey-6-rgb: 152, 160, 174;
+  --palette-grey-7-rgb: 130, 138, 151;
+  --palette-grey-8-rgb: 102, 109, 119;
+  --palette-grey-9-rgb: 60, 63, 70;
+  --hex-google-color: #CC181E;
+}
+
+:root {
+  /* rem */
+  --rem-0: 0;
+  --rem-1: 0.25rem;
+  --rem-2: 0.5rem;
+  --rem-3: 0.75rem;
+  --rem-4: 1rem;
+  --rem-5: 1.25rem;
+  --rem-6: 1.5rem;
+  --rem-7: 1.75rem;
+  --rem-8: 2rem;
+  --rem-9: 2.25rem;
+  --rem-10: 2.5rem;
+  --rem-11: 2.75rem;
+  --rem-12: 3rem;
+  --rem-16: 4rem;
+  --rem-20: 5rem;
+  /* Colors */
+  --clr-black: #000000;
+  --clr-white: #FFFFFF;
+  --clr-blue-100: #EBF8FF;
+  --clr-blue-300: #90CDF4;
+  --clr-blue-600: #3182CE;
+  --clr-orange: #FF7F50FF;
+  --clr-grey: #444444;
+  --clr-grey-100: #FFF5F5;
+  --clr-grey-200: #EDF2F7;
+  --clr-grey-400: #CBD5E0;
+  --clr-grey-500: #A0AEC0;
+  --clr-grey-600: #718096;
+  --cl-beige: #F5F5DCFF;
+  --cl-bolger: #A87C23;
+  --cl-bolger-light: #BFA16B;
+  --cl-qbr-blue: #3589B1;
+  --cl-qbr-blue-light: #C4D9E5;
+  //
+  --page-title-color: rgb(var(--palette-grey-9-rgb));
+  --page-text-color: rgb(var(--palette-grey-8-rgb));
+  --link-text-color: rgb(var(--palette-primary-rgb));
+  --side-image-overlay: rgba(var(--palette-primary-rgb), 0.15);
+  --page-spacing: 10px;
+  --fb-button-color: rgb(var(--palette-facebook-rgb));
+  --tw-button-color: rgb(var(--palette-twitter-rgb));
+  --google-button-color: rgb(var(--palette-google-rgb));
+  --social-buttons-background: rgb(var(--palette-white-rgb));
+  --button-padding: 6px 26px;
+}
+
+
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+h1{
+  font-size: var(--rem-10);
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--cl-beige);
+}
