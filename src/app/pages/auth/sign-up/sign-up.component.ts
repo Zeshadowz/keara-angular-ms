@@ -10,8 +10,12 @@ import { controlsOf } from "../../../utils/form/form-type.utils";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { MatSelectionList } from "@angular/material/list";
-import { MatOption, MatSelect } from "@angular/material/select";
+import { MatOption, MatSelect, MatSelectTrigger } from "@angular/material/select";
 import { AuthService } from "../../../core/auth/auth.service";
+import { emailValidator } from "../../../shared/validators/email.validator";
+import { passwordValidator } from "../../../shared/validators/password.validator";
+import { confirmPasswordValidator } from "../../../shared/validators/confirm-password.validator";
+import { genderList, roleList, titleList } from "../../../core/constants/gender.constant";
 
 @Component({
   selector: 'app-sign-up',
@@ -32,7 +36,8 @@ import { AuthService } from "../../../core/auth/auth.service";
     MatRadioButton,
     MatSelectionList,
     MatSelect,
-    MatOption
+    MatOption,
+    MatSelectTrigger
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
@@ -51,10 +56,10 @@ export class SignUpComponent {
       gender: fb.nonNullable.control('', []),
       firstname: fb.nonNullable.control('', [Validators.required]),
       lastname: fb.nonNullable.control('', []),
-      email: fb.nonNullable.control('', []),
+      email: fb.nonNullable.control('', [emailValidator]),
       phone: fb.nonNullable.control('', []),
-      password: fb.nonNullable.control('', []),
-      passwordVerification: fb.nonNullable.control('', []),
+      password: fb.nonNullable.control('', [passwordValidator]),
+      confirmPassword: fb.nonNullable.control('', [confirmPasswordValidator]),
       role: fb.nonNullable.control('', []),
       terms: fb.nonNullable.control(false, [Validators.requiredTrue])
     });
@@ -69,4 +74,9 @@ export class SignUpComponent {
   isControlInvalid(control: string, error: string) {
     return this.registrationForm.get(control)?.hasError(error);
   }
+
+  protected readonly genderConstants = genderList;
+  protected readonly genderList = genderList;
+  protected readonly titleList = titleList;
+  protected readonly roleList = roleList;
 }

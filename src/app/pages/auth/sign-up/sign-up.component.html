@@ -17,8 +17,9 @@
             <mat-form-field appearance="outline">
               <mat-label>Gender</mat-label>
               <mat-select formControlName="gender" required>
-                <mat-option value="female">FEMALE</mat-option>
-                <mat-option value="male">MALE</mat-option>
+                @for (gender of genderList; track gender) {
+                  <mat-option [value]="gender">{{ gender }}</mat-option>
+                }
               </mat-select>
               <mat-error>Gender is required</mat-error>
             </mat-form-field>
@@ -26,8 +27,9 @@
               <mat-label>Title</mat-label>
               <mat-select formControlName="title">
                 <mat-option>None</mat-option>
-                <mat-option value="Prof. Dr.">Prof. Dr.</mat-option>
-                <mat-option value="Dr.">Dr.</mat-option>
+                @for (title of titleList; track title) {
+                  <mat-option [value]="title">{{ title }}</mat-option>
+                }
               </mat-select>
             </mat-form-field>
           </div>
@@ -50,7 +52,7 @@
               <mat-error>
                 @if (isControlInvalid('email', 'required')) {
                   Email address is required
-                } @else if (isControlInvalid('email', 'pattern')) {
+                } @else if (isControlInvalid('email', 'email')) {
                   Invalid email address
                 }
               </mat-error>
@@ -68,30 +70,32 @@
               <mat-error>
                 @if (isControlInvalid('password', 'required')) {
                   Password is required
-                } @else if (isControlInvalid('password', 'pattern')) {
+                } @else if (isControlInvalid('password', 'length')) {
                   Password should be at least 8 characters long
+                } @else if (isControlInvalid('password', 'pattern')) {
+                  Password does not pattern
                 }
               </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Confirm password</mat-label>
-              <input matInput type="password" formControlName="passwordVerification" required>
-              <mat-error>Verification is required</mat-error>
-              <mat-error>Password does not match</mat-error>
+              <input matInput type="password" formControlName="confirmPassword" required>
               <mat-error>
-                @if (registrationForm.errors?.['match']) {
-                  No match
+                @if (isControlInvalid('confirmPassword', 'required')) {
+                  Password is required
+                } @else if (isControlInvalid('confirmPassword', 'passwordsNotMatch')) {
+                  Password does not matched
                 }
               </mat-error>
             </mat-form-field>
           </div>
           <div class="form-row">
-            <mat-form-field class="form-field" appearance="outline">
+            <mat-form-field appearance="outline">
               <mat-label>Role</mat-label>
               <mat-select formControlName="role" required>
-                <mat-option value="Admin">Admin</mat-option>
-                <mat-option value="User">User</mat-option>
-                <mat-option value="Employee">Employee</mat-option>
+                @for (role of roleList; track role) {
+                  <mat-option [value]="role">{{ role }}</mat-option>
+                }
               </mat-select>
               <mat-error>Role is required</mat-error>
             </mat-form-field>
