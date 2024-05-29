@@ -1,12 +1,5 @@
-export interface SignUpModel {
-  title: string;
-  gender: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-  phone: string;
-  password: string;
+import { SignUpRequestDto } from "../../../shared/api/dto/sign-up.dto";
+
+export interface SignUpModel extends SignUpRequestDto {
   passwordVerification: string;
-  role: string;
-  terms: boolean;
 }

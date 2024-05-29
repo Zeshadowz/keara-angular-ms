@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "title": "",
+      "gender": "male",
+      "firstname": "Kevin",
+      "lastname": "Azangue",
+      "email": "k.azangue@email.com",
+      "phone": "+49123456789",
+      "password": "password",
+      "role": "admin",
+      "terms": true
+    }
+  ],
+  "employees": [
+    {
+      "firstname": "Kyrie",
+      "lastname": "Erwin",
+      "gender": "female",
+      "email": "e.kyrie@email.com",
+      "id": 1
+    }
+  ]
+}

@@ -11,18 +11,24 @@
           </span>
         </div>
       </mat-card-title>
-      <form class="signup-form" [formGroup]="registerForm" (ngSubmit)="proceedRegistration()">
+      <form class="signup-form" [formGroup]="registrationForm" (ngSubmit)="proceedRegistration()">
         <mat-card-content class="form-content">
           <div class="form-row" style="">
             <mat-form-field appearance="outline">
               <mat-label>Gender</mat-label>
-              <input matInput type="text" formControlName="gender" required>
-              <mat-error>First name is required</mat-error>
+              <mat-select formControlName="gender" required>
+                <mat-option value="female">FEMALE</mat-option>
+                <mat-option value="male">MALE</mat-option>
+              </mat-select>
+              <mat-error>Gender is required</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Title</mat-label>
-              <input matInput type="text" formControlName="title" required>
-              <mat-error>Last name is required</mat-error>
+              <mat-select formControlName="title">
+                <mat-option>None</mat-option>
+                <mat-option value="Prof. Dr.">Prof. Dr.</mat-option>
+                <mat-option value="Dr.">Dr.</mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
           <div class="form-row" style="">
@@ -52,8 +58,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Phone</mat-label>
               <input matInput type="text" formControlName="phone" required>
-              <mat-error>Username is required</mat-error>
-              <mat-error>Username is already taken</mat-error>
+              <mat-error>Phone is required</mat-error>
             </mat-form-field>
           </div>
           <div class="form-row">
@@ -74,7 +79,7 @@
               <mat-error>Verification is required</mat-error>
               <mat-error>Password does not match</mat-error>
               <mat-error>
-                @if (registerForm.errors?.['match']) {
+                @if (registrationForm.errors?.['match']) {
                   No match
                 }
               </mat-error>
@@ -83,7 +88,12 @@
           <div class="form-row">
             <mat-form-field class="form-field" appearance="outline">
               <mat-label>Role</mat-label>
-              <input matInput formControlName="role">
+              <mat-select formControlName="role" required>
+                <mat-option value="Admin">Admin</mat-option>
+                <mat-option value="User">User</mat-option>
+                <mat-option value="Employee">Employee</mat-option>
+              </mat-select>
+              <mat-error>Role is required</mat-error>
             </mat-form-field>
           </div>
 
@@ -98,7 +108,7 @@
           </section>
         </mat-card-content>
         <div class="form-call-to-action">
-          <button mat-raised-button color="primary" class="sign-in-btn" [disabled]="!registerForm.valid">Create
+          <button mat-raised-button color="primary" class="sign-in-btn" [disabled]="!registrationForm.valid">Create
             account
           </button>
         </div>
