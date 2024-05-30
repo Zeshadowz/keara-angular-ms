@@ -11,5 +11,17 @@ export interface SignUpRequestDto {
 }
 
 export interface SignUpResponseDto {
-  "id": number;
+  "id": string;
+}
+
+export interface UserDto {
+  id: number;
+  gender: string;
+  title: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  role: string;
+  terms: boolean
 }

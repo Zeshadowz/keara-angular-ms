@@ -3,7 +3,7 @@ import { MatButton } from "@angular/material/button";
 import { MatCard, MatCardActions, MatCardContent, MatCardTitle } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
-import { RouterLink, RouterOutlet } from "@angular/router";
+import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { SignUpModel } from "../../../core/auth/model/sign-up.model";
 import { controlsOf } from "../../../utils/form/form-type.utils";
@@ -48,6 +48,7 @@ export class SignUpComponent {
   registrationForm: FormGroup<controlsOf<SignUpModel>>;
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private fb: FormBuilder
   ) {
@@ -56,7 +57,7 @@ export class SignUpComponent {
       gender: fb.nonNullable.control('', []),
       firstname: fb.nonNullable.control('', [Validators.required]),
       lastname: fb.nonNullable.control('', []),
-      email: fb.nonNullable.control('', [emailValidator]),
+      email: fb.nonNullable.control('', [emailValidator], [this.authService.checkUser]),
       phone: fb.nonNullable.control('', []),
       password: fb.nonNullable.control('', [passwordValidator]),
       confirmPassword: fb.nonNullable.control('', [confirmPasswordValidator]),
@@ -67,7 +68,16 @@ export class SignUpComponent {
 
   proceedRegistration() {
     if (this.registrationForm.valid) {
-      this.authService.registerUser(<SignUpModel>this.registrationForm.value);
+      this.authService.registerUser(<SignUpModel>this.registrationForm.value)
+        .subscribe(data => {
+          if (data) {
+            this.router.navigateByUrl('/auth/login').then(r => {
+              if (r) {
+                this.registrationForm.reset();
+              }
+            })
+          }
+        });
     }
   }
 

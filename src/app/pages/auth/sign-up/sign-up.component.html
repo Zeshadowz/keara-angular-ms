@@ -54,6 +54,8 @@
                   Email address is required
                 } @else if (isControlInvalid('email', 'email')) {
                   Invalid email address
+                } @else if (isControlInvalid('email', 'exists')) {
+                  Email already taken
                 }
               </mat-error>
             </mat-form-field>
