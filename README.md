@@ -31,15 +31,23 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Install
 
+#### Install global
+
 ```shell
 mpm install -g json-server
+```
+
+#### Install local
+
+```shell
+mpm install json-server --save-dev
 ```
 
 ### Structure
 
 ```
 |-- fake-api
-    |-- index.js
+    |-- db.js
     |-- users.json
 
 ```

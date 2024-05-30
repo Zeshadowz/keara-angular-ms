@@ -5,6 +5,11 @@ import { AppLayoutComponent } from "./theme/layout/app-layout/app-layout.compone
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full'
+  },
+  {
     path: 'auth',
     component: AuthLayoutComponent,
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)

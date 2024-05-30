@@ -5,7 +5,7 @@ import { ResetPasswordComponent } from "./reset-password/reset-password.componen
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { LockScreenComponent } from "./lock-screen/lock-screen.component";
 
-export const authRoutes: Routes = [
+export const AUTH_ROUTES: Routes = [
   {
     path: 'login',
     component: SignInComponent,

@@ -1,0 +1,11 @@
+@use "styles/param" as param;
+
+@mixin gap-list($map) {
+  @each $gap-name, $gap in $map {
+    .kea-layout-gap-#{$gap-name} {
+      gap: $gap;
+    }
+  }
+}
+
+@include gap-list(map-get(param.$layout, "gap"))
