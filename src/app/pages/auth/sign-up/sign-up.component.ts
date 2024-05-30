@@ -12,7 +12,7 @@ import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { MatSelectionList } from "@angular/material/list";
 import { MatOption, MatSelect, MatSelectTrigger } from "@angular/material/select";
 import { AuthService } from "../../../core/auth/auth.service";
-import { emailValidator } from "../../../shared/validators/email.validator";
+import { emailValidator, UniqueEmailValidator } from "../../../shared/validators/email.validator";
 import { passwordValidator } from "../../../shared/validators/password.validator";
 import { confirmPasswordValidator } from "../../../shared/validators/confirm-password.validator";
 import { genderList, roleList, titleList } from "../../../core/constants/gender.constant";
@@ -57,7 +57,7 @@ export class SignUpComponent {
       gender: fb.nonNullable.control('', []),
       firstname: fb.nonNullable.control('', [Validators.required]),
       lastname: fb.nonNullable.control('', []),
-      email: fb.nonNullable.control('', [emailValidator], [this.authService.checkUser]),
+      email: fb.nonNullable.control('', [emailValidator], [UniqueEmailValidator(this.authService)]),
       phone: fb.nonNullable.control('', []),
       password: fb.nonNullable.control('', [passwordValidator]),
       confirmPassword: fb.nonNullable.control('', [confirmPasswordValidator]),

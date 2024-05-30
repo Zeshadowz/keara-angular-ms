@@ -4,6 +4,7 @@ import { SignUpModel } from "./model/sign-up.model";
 import { SignUpMapper } from "../../shared/mappers/sign-up.mapper";
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
 import { map, Observable } from "rxjs";
+import { UserDto } from "../../shared/api/dto/sign-up.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +24,16 @@ export class AuthService {
     })*/
   }
 
+  fetchUserByEmail(email: string): Observable<UserDto | undefined> {
+    return this.userResourceService.getUserByEmail(email)
+      .pipe(map(data => {
+        return data[0]
+      }))
+  }
+
   checkUser: AsyncValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
     const email = control.value;
     return this.userResourceService.getUserByEmail(email)
-      .pipe(map(response => {
-        return response.length > 0 ? {exists: true} : null;
-      }))
   }
 
   checkEmail: AsyncValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
