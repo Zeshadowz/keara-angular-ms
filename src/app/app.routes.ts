@@ -16,7 +16,7 @@ export const routes: Routes = [
   }, {
     path: 'admin',
     component: AdminLayoutComponent,
-    children: []
+    loadChildren: () => import('./modules/admin/admin.routes').then(c => c.ADMIN_ROUTE)
   }, {
     path: 'app',
     component: AppLayoutComponent,
