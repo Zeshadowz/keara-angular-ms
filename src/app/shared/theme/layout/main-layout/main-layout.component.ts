@@ -4,8 +4,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatIconButton } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
-import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
-import { HeaderComponent } from "../../shared/header/header.component";
+import { SidebarComponent } from "../../components/sidebar/sidebar.component";
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
   selector: 'kea-main-layout',
