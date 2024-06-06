@@ -9,6 +9,12 @@ export const ADMIN_ROUTE: Route[] = [
   },
   {
     path: 'home',
+    title: 'Home',
+    component: HomeComponent
+  },
+  {
+    path: 'employees',
+    title: 'Employees',
     component: HomeComponent
   }
 ]

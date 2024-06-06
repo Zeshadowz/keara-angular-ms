@@ -1,11 +1,8 @@
-<mat-toolbar class="mat-elevation-z3">
-  <button mat-icon-button (click)="collapsed.set(!collapsed())">
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-toolbar>
+<kea-header (collapseEvent)=computeCollapse($event)></kea-header>
+
 <mat-sidenav-container>
   <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
-    <kea-sidebar [collapsed]="collapsed()"/>
+    <kea-sidebar [collapsed]="isSidebarCollapsed()"/>
   </mat-sidenav>
   <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
     <router-outlet/>
