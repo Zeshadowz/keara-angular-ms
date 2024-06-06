@@ -1,0 +1,10 @@
+<kea-header (collapseEvent)=computeCollapse($event)></kea-header>
+
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+    <kea-sidebar [collapsed]="isSidebarCollapsed()"/>
+  </mat-sidenav>
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <router-outlet/>
+  </mat-sidenav-content>
+</mat-sidenav-container>

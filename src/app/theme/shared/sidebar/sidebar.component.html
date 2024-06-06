@@ -1,1 +1,18 @@
-<p>sidebar works!</p>
+<div class="sidenav-header">
+  <img width="{{profilePicSize()}}" height="{{profilePicSize()}}" src="favicon.ico" alt=""/>
+  <div class="header-text" [class.hide-text]="sidenavCollapsed()">
+    <h2>Your channel</h2>
+    <p>Kevin Azangue</p>
+  </div>
+</div>
+<mat-nav-list>
+  @for (item of menuItems(); track item) {
+    <a mat-list-item [routerLink]="item.route">
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      <!--span matListItemTitle [class.hide-text]="sidenavCollapsed()">{{ item.label }}</span-->
+      @if (!sidenavCollapsed()) {
+        <span matListItemTitle>{{ item.label }}</span>
+      }
+    </a>
+  }
+</mat-nav-list>
