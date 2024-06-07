@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { SignUpModel } from "../../core/auth/model/sign-up.model";
+import { RegisterModel } from "../../core/auth/model/register.model";
 import { SignUpRequestDto } from "../api/dto/sign-up.dto";
 
 @Injectable({
@@ -7,7 +7,7 @@ import { SignUpRequestDto } from "../api/dto/sign-up.dto";
 })
 export class SignUpMapper {
 
-  public toDto(model: SignUpModel): SignUpRequestDto {
+  public toDto(model: RegisterModel): SignUpRequestDto {
     return {
       gender: model.gender,
       title: model.title,

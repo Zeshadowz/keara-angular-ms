@@ -1,0 +1,149 @@
+#login-form {
+  box-shadow: 0 0 0;
+}
+
+.login-page {
+  min-height: 100vh;
+  background-color: white;
+}
+
+.login-page .form-section {
+  padding: calc(var(--page-spacing) * 8);
+}
+
+.page-title {
+  color: var(--page-title-color);
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.page-title h1 {
+  font-size: var(--rem-9);
+}
+
+.page-subtitle {
+  color: var(--page-text-color);
+  font-size: 17px;
+  font-weight: normal;
+}
+
+.form-content {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.form-field {
+  padding-top: 30px;
+  width: 100%;
+}
+
+.image-section {
+  background-image: url("/assets/img/auth/login-modal-image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.form-call-to-action {
+  display: flex;
+  align-items: baseline;
+  margin-top: calc(var(--page-spacing) * 3);
+}
+
+.link-text {
+  color: var(--link-text-color);
+}
+
+.sign-in-btn {
+  margin-inline-start: auto;
+}
+
+.register-divider {
+  align-items: center;
+  color: var(--page-text-color);
+  display: flex;
+  margin: calc(var(--page-spacing) * 2) 0px;
+  font-size: 16px;
+}
+
+.register-divider .line {
+  flex-grow: 1;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.6);
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+.social-logins {
+  flex-wrap: nowrap;
+}
+
+.social-logins button:not(:last-child) {
+  margin-right: var(--page-spacing);
+}
+
+.fb-signin,
+.google-signin,
+.twitter-signin {
+  background-color: var(--hex-google-color);
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: normal;
+  transition: border-color 0.5s, color 0.5s, background-color 0.5s;
+  padding: var(--button-padding);
+}
+
+.fb-signin {
+  --button-background: var(--social-buttons-background);
+  --button-border: var(--fb-button-color);
+  --button-color: var(--fb-button-color);
+  background-color: var(--button-background, rgb(var(--palette-white-rgb)));
+  border-color: var(--button-border, rgb(var(--palette-primary-rgb)));
+  color: var(--button-color, rgb(var(--palette-primary-rgb)));
+}
+
+.fb-signin:hover {
+  color: var(--social-buttons-background);
+  background-color: var(--button-border, rgb(var(--palette-primary-rgb)));
+}
+
+.google-signin {
+  --button-background: var(--social-buttons-background);
+  --button-border: var(--google-button-color);
+  --button-color: var(--google-button-color);
+  background-color: var(--button-background, rgb(var(--palette-white-rgb)));
+  border-color: var(--button-border, rgb(var(--palette-primary-rgb)));
+}
+
+.google-signin:hover {
+  color: var(--social-buttons-background);
+  background-color: var(--button-border, rgb(var(--palette-primary-rgb)));
+}
+
+.twitter-signin {
+  --button-background: var(--social-buttons-background);
+  --button-border: var(--tw-button-color);
+  --button-color: var(--tw-button-color);
+  background-color: var(--button-background, rgb(var(--palette-white-rgb)));
+  border-color: var(--button-border, rgb(var(--palette-primary-rgb)));
+  color: var(--button-color, rgb(var(--palette-primary-rgb)));
+}
+
+.twitter-signin:hover {
+  color: var(--social-buttons-background);
+  background-color: var(--button-border, rgb(var(--palette-primary-rgb)));
+}
+
+.existing-account-section {
+  color: var(--page-text-color);
+  margin-top: calc(var(--page-spacing) * 4);
+  text-align: center;
+}

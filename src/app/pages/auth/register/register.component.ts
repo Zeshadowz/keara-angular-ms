@@ -5,7 +5,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { SignUpModel } from "../../../core/auth/model/sign-up.model";
+import { RegisterModel } from "../../../core/auth/model/register.model";
 import { controlsOf } from "../../../utils/form/form-type.utils";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
@@ -18,7 +18,7 @@ import { confirmPasswordValidator } from "../../../shared/validators/confirm-pas
 import { genderList, roleList, titleList } from "../../../core/constants/gender.constant";
 
 @Component({
-  selector: 'app-sign-up',
+  selector: 'kea-register',
   standalone: true,
   imports: [
     MatButton,
@@ -39,13 +39,13 @@ import { genderList, roleList, titleList } from "../../../core/constants/gender.
     MatOption,
     MatSelectTrigger
   ],
-  templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.scss'
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss'
 })
-export class SignUpComponent {
+export class RegisterComponent {
   title: string = 'Welcome!';
 
-  registrationForm: FormGroup<controlsOf<SignUpModel>>;
+  registrationForm: FormGroup<controlsOf<RegisterModel>>;
 
   constructor(
     private router: Router,
@@ -68,7 +68,7 @@ export class SignUpComponent {
 
   proceedRegistration() {
     if (this.registrationForm.valid) {
-      this.authService.registerUser(<SignUpModel>this.registrationForm.value)
+      this.authService.registerUser(<RegisterModel>this.registrationForm.value)
         .subscribe(data => {
           if (data) {
             this.router.navigateByUrl('/auth/login').then(r => {

@@ -1,0 +1,62 @@
+<div class="row no-gutters login-page">
+  <div class="col-md-7 col-lg-6 col-sm-12 form-section">
+    <mat-card id="login-form">
+      <mat-card-title class="page-title" style="padding: 0">
+        <h1>Hey There! Welcome back.</h1>
+        <span class="page-subtitle">Enter your sign in details below so you can enjoy this Angular template.</span>
+      </mat-card-title>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <mat-card-content class="form-content">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email" style="padding: -15px; margin: 0" required>
+            <mat-error>
+              @if (isControlInvalid('email', 'required')) {
+                Email address is required
+              } @else if (isControlInvalid('email', 'pattern')) {
+                Invalid email address
+              }
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" required>
+            <mat-error>
+              @if (isControlInvalid('password', 'required')) {
+                Password is required
+              } @else if (isControlInvalid('password', 'length')) {
+                Password should be at least 8 characters long
+              } @else if (isControlInvalid('password', 'pattern')) {
+                Password does not match pattern
+              }
+            </mat-error>
+          </mat-form-field>
+          <mat-error> @if (isCredentialsInvalid) {
+            Invalid credentials
+          } </mat-error>
+        </mat-card-content>
+        <div class="form-call-to-action" style="">
+          <a href="#" class="link-text">Forgot password?</a>
+          <button mat-raised-button color="primary" class="sign-in-btn" [disabled]="!loginForm.valid">Sign In</button>
+        </div>
+        <div class="register-divider">
+          <hr class="line">
+          <span> Or sign in using </span>
+          <hr class="line">
+        </div>
+        <div class="social-logins row no-gutters">
+          <button type="button" class="col-xs-12 col-sm-4 fb-signin"> Facebook</button>
+          <button type="button" class="col-xs-12 col-sm-4 google-signin"> Google</button>
+          <button type="button" class="col-xs-12 col-sm-4 twitter-signin"> Twitter</button>
+        </div>
+        <div class="existing-account-section">
+          <span class="text">Don't have an account? </span>
+          <a href="" routerLink="/auth/register" class="link-text">Sign up.</a>
+        </div>
+      </form>
+    </mat-card>
+
+
+  </div>
+  <div class="col-md-5 col-lg-6 d-none d-md-block image-section"></div>
+</div>
