@@ -7,33 +7,36 @@
       </mat-card-title>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <mat-card-content class="form-content">
-          <mat-form-field class="form-field" appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput type="text" formControlName="email" style="padding: -15px; margin: 0" required>
-            <mat-error>
-              @if (isControlInvalid('email', 'required')) {
-                Email address is required
-              } @else if (isControlInvalid('email', 'pattern')) {
-                Invalid email address
-              }
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="form-field" appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" required>
-            <mat-error>
-              @if (isControlInvalid('password', 'required')) {
-                Password is required
-              } @else if (isControlInvalid('password', 'length')) {
-                Password should be at least 8 characters long
-              } @else if (isControlInvalid('password', 'pattern')) {
-                Password does not match pattern
-              }
-            </mat-error>
-          </mat-form-field>
-          <mat-error> @if (isCredentialsInvalid) {
-            Invalid credentials
-          } </mat-error>
+          <div class="form-row">
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="text" formControlName="email" style="padding: -15px; margin: 0" required>
+              <mat-error>
+                @if (isControlInvalid('email', 'required')) {
+                  Email address is required
+                } @else if (isControlInvalid('email', 'pattern')) {
+                  Invalid email address
+                }
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-row">
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" required>
+              <mat-error>
+                @if (isControlInvalid('password', 'required')) {
+                  Password is required
+                } @else if (isControlInvalid('password', 'length')) {
+                  Password should be at least 8 characters long
+                } @else if (isControlInvalid('password', 'pattern')) {
+                  Password does not match pattern
+                } @else if (isCredentialsInvalid) {
+                  Invalid credentials
+                }
+              </mat-error>
+            </mat-form-field>
+          </div>
         </mat-card-content>
         <div class="form-call-to-action" style="">
           <a href="#" class="link-text">Forgot password?</a>

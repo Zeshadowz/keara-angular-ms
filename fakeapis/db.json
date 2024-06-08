@@ -11,6 +11,18 @@
       "password": "password",
       "role": "admin",
       "terms": true
+    },
+    {
+      "email": "kaz@email2.com",
+      "password": "$2a$10$JnE06Ay9GqkS4UREPDMJdONUjL0nBNBbLq0jpDyu5jjw7U3x2O.K2",
+      "title": "",
+      "gender": "male",
+      "firstname": "Kevin",
+      "lastname": "Azangue",
+      "phone": "+49123456789",
+      "role": "admin",
+      "terms": true,
+      "id": "Cn1_Hcz"
     }
   ],
   "employees": [
@@ -21,5 +33,6 @@
       "email": "e.kyrie@email.com",
       "id": 1
     }
-  ]
+  ],
+  "products": []
 }

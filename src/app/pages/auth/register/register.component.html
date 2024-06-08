@@ -13,7 +13,7 @@
       </mat-card-title>
       <form class="signup-form" [formGroup]="registrationForm" (ngSubmit)="proceedRegistration()">
         <mat-card-content class="form-content">
-          <div class="form-row" style="">
+          <div class="form-row">
             <mat-form-field appearance="outline">
               <mat-label>Gender</mat-label>
               <mat-select formControlName="gender" required>
@@ -33,7 +33,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="form-row" style="">
+          <div class="form-row">
             <mat-form-field appearance="outline">
               <mat-label>First Name</mat-label>
               <input matInput type="text" formControlName="firstname" required>
