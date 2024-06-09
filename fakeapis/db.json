@@ -27,11 +27,34 @@
   ],
   "employees": [
     {
-      "firstname": "Kyrie",
-      "lastname": "Erwin",
+      "id": "Cn1_Hcz",
       "gender": "female",
-      "email": "e.kyrie@email.com",
-      "id": 1
+      "title": "Dr.",
+      "firstname": "Lydia",
+      "lastname": "Williams",
+      "email": "l.williams@kea.de",
+      "password": "$2a$10$JnE06Ay9GqkS4UREPDMJdONUjL0nBNBbLq0jpDyu5jjw7U3x2O.K2",
+      "phone": "+4991112457897",
+      "active": true,
+      "dateOfBirth": "",
+      "position": "Developer",
+      "salary": 5000,
+      "role": "user"
+    },
+    {
+      "id": "Cn2_Hcz",
+      "gender": "male",
+      "title": "Dr.",
+      "firstname": "Yvan",
+      "lastname": "Jones",
+      "email": "y.jones@kea.de",
+      "password": "$2a$10$JnE06Ay9GqkS4UREPDMJdONUjL0nBNBbLq0jpDyu5jjw7U3x2O.K2",
+      "phone": "+4991112457897",
+      "active": true,
+      "dateOfBirth": "",
+      "position": "Developer",
+      "salary": 5000,
+      "role": "user"
     }
   ],
   "products": []

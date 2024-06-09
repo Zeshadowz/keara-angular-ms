@@ -1,0 +1,147 @@
+.materialTableHeader {
+  -webkit-box-align: center;
+  align-items: center;
+  border-color: #dae1f3;
+  background-color: #dae1f3;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  // min-width: 800px;
+
+  .left {
+    flex: 35%;
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .center {
+    flex: 40%;
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  .right {
+    flex: 10%;
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .tbl-export-btn {
+    float: right;
+    margin: 0px 15px;
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    li {
+      display: inline-block;
+      position: relative;
+    }
+  }
+
+  .header-buttons-left {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .tbl-search-box {
+      position: relative;
+      margin-left: 10px;
+    }
+
+    .tbl-title {
+      vertical-align: middle;
+      margin-left: 20px;
+
+      h2 {
+        font-weight: 500;
+      }
+    }
+
+    .tbl-header-btn {
+      position: relative;
+    }
+
+    li {
+      display: inline-block;
+    }
+
+    .searchbox {
+      position: relative;
+    }
+
+    ::placeholder {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 10px;
+      padding-left: 10px;
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    input.search-field {
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.54);
+      border-radius: 5px;
+      border: 0;
+      height: 45px;
+      padding: 8px 8px 8px 50px;
+      width: 250px;
+      background: #ffffff;
+      transition: background 0.2s, width 0.2s;
+
+      &:hover {
+        background: #fffefe;
+      }
+
+      // &:focus {
+      //   outline: none;
+      //   width: 380px;
+      //   color: #212121;
+      //   &:hover {
+      //     background: #f7f7f7;
+      //   }
+      // }
+    }
+  }
+
+  .header-buttons-right {
+    text-align: right;
+    list-style: none;
+    height: 100%;
+    margin: 0px 10px;
+
+    .tbl-header-btn {
+      position: relative;
+      top: 12px;
+    }
+
+    li {
+      display: inline-block;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: normal;
+      color: #5b626b;
+    }
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+    color: #5b626b;
+  }
+}
