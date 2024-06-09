@@ -14,11 +14,14 @@ import {
 } from "@angular/material/table";
 import { EmployeeService } from "../../../../shared/services/employee.service";
 import { EmployeeMain } from "../../../../shared/model/EmployeeMain.model";
-import { MatCheckbox } from "@angular/material/checkbox";
 import { SelectionModel } from "@angular/cdk/collections";
-import { MatTooltip } from "@angular/material/tooltip";
-import { MatMiniFabButton } from "@angular/material/button";
+import { MatFormField, MatLabel, MatPrefix } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
+import { MatCheckbox } from "@angular/material/checkbox";
+import { MatTooltip } from "@angular/material/tooltip";
+import { MatIconButton, MatMiniFabButton } from "@angular/material/button";
+import { MatPaginator } from "@angular/material/paginator";
 
 @Component({
   selector: 'app-employee-list',
@@ -37,7 +40,13 @@ import { MatIconModule } from "@angular/material/icon";
     MatCheckbox,
     MatTooltip,
     MatMiniFabButton,
-    MatIconModule
+    MatIconModule,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatPrefix,
+    MatIconButton,
+    MatPaginator
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
@@ -66,6 +75,11 @@ export class EmployeeListComponent implements OnInit {
 
   loadData() {
     this.empService.getAll().subscribe(data => this.dataSource.data = data)
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
