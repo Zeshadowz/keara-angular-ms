@@ -4,7 +4,7 @@ import { map, Observable } from "rxjs";
 import { AuthService } from "../../core/auth/auth.service";
 
 export const emailValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  return !EMAIL_PATTERN.test(control.value) ? {email: true} : null;
+  return !EMAIL_PATTERN.test(control.value) ? {pattern: true} : null;
 }
 
 export const UniqueEmailValidator = (service: AuthService): AsyncValidatorFn => {

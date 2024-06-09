@@ -52,7 +52,7 @@
               <mat-error>
                 @if (isControlInvalid('email', 'required')) {
                   Email address is required
-                } @else if (isControlInvalid('email', 'email')) {
+                } @else if (isControlInvalid('email', 'pattern')) {
                   Invalid email address
                 } @else if (isControlInvalid('email', 'exists')) {
                   Email already taken

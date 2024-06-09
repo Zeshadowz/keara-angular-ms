@@ -27,10 +27,8 @@
               <mat-error>
                 @if (isControlInvalid('password', 'required')) {
                   Password is required
-                } @else if (isControlInvalid('password', 'length')) {
+                } @else if (isControlInvalid('password', 'minlength')) {
                   Password should be at least 8 characters long
-                } @else if (isControlInvalid('password', 'pattern')) {
-                  Password does not match pattern
                 } @else if (isCredentialsInvalid) {
                   Invalid credentials
                 }
