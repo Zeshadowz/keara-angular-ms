@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { SignInComponent } from "./sign-in/sign-in.component";
-import { SignUpComponent } from "./sign-up/sign-up.component";
+import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { LockScreenComponent } from "./lock-screen/lock-screen.component";
@@ -8,11 +8,11 @@ import { LockScreenComponent } from "./lock-screen/lock-screen.component";
 export const AUTH_ROUTES: Routes = [
   {
     path: 'login',
-    component: SignInComponent,
+    component: LoginComponent,
     data: {title: 'Login'}
   }, {
     path: 'register',
-    component: SignUpComponent,
+    component: RegisterComponent,
     data: {title: 'Register'}
   },
   {
