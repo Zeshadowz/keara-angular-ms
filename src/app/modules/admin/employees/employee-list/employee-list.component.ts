@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, Inject, OnInit, Renderer2 } from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -22,6 +22,8 @@ import { MatCheckbox } from "@angular/material/checkbox";
 import { MatTooltip } from "@angular/material/tooltip";
 import { MatIconButton, MatMiniFabButton } from "@angular/material/button";
 import { MatPaginator } from "@angular/material/paginator";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: 'app-employee-list',
@@ -52,6 +54,9 @@ import { MatPaginator } from "@angular/material/paginator";
   styleUrl: './employee-list.component.scss'
 })
 export class EmployeeListComponent implements OnInit {
+
+  matIconDelete: HTMLElement | null = null;
+
   displayedColumns = [
     'select',
     'gender',
@@ -65,12 +70,26 @@ export class EmployeeListComponent implements OnInit {
   dataSource: MatTableDataSource<EmployeeMain>;
   selection = new SelectionModel<EmployeeMain>(true, []);
 
-  ngOnInit(): void {
-    this.loadData();
+  constructor(
+    private empService: EmployeeService,
+    private renderer: Renderer2,
+    private destroyRef: DestroyRef,
+    @Inject(DOCUMENT) private document: Document,
+  ) {
+    this.dataSource = new MatTableDataSource<EmployeeMain>();
+    this.matIconDelete = this.document.getElementById("deleteIcon");
   }
 
-  constructor(private empService: EmployeeService) {
-    this.dataSource = new MatTableDataSource<EmployeeMain>();
+  ngOnInit(): void {
+    this.loadData();
+
+    this.selection.changed
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((data) => {
+        data.source.hasValue() ?
+          this.renderer.addClass(this.matIconDelete, 'col-white') :
+          this.renderer.removeClass(this.matIconDelete, 'col-white');
+      })
   }
 
   loadData() {
@@ -108,7 +127,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addNew() {
-
+    console.log('Add new employee')
   }
 
   refresh() {
@@ -116,7 +135,9 @@ export class EmployeeListComponent implements OnInit {
   }
 
   removeSelectedRows() {
-
+    this.selection.selected.forEach((row: EmployeeMain) => {
+      console.log('delete', row);
+    })
   }
 
   exportExcel() {
