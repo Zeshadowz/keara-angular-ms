@@ -155,8 +155,11 @@
 }
 
 .keaTable {
-  box-shadow: 0 5px 5px silver;
-  border-radius: 20px;
+  box-shadow: 0 2px 3px silver;
+  border-radius: 5px;
+  min-width: 800px;
+  padding-bottom: 3px;
+  overflow: hidden;
 
   .keaTableHeader {
     display: flex;
@@ -164,12 +167,10 @@
     justify-content: space-between;
     width: 100%;
     gap: 10px;
-    padding: 5px 10px;
+    padding-left: 5px;
     align-items: center;
     vertical-align: middle;
     background-color: #595959;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
 
     .left {
       display: flex;
