@@ -10,7 +10,8 @@
     "serve:ssr:keara-angular-ms": "node dist/keara-angular-ms/server/server.mjs",
     "mock:api": "json-server --watch fakeapis/db.json --port 3000",
     "mock:sec": "npx json-server-auth fakeapis/db.json -r fakeapis/routes.json",
-    "arc": "concurrently --kill-others \"npm run mock:api\" \"ng serve\" "
+    "arc:api": "concurrently --kill-others \"npm run mock:api\" \"ng serve\" ",
+    "arc:sec": "concurrently --kill-others \"npm run mock:sec\" \"ng serve\" "
   },
   "private": true,
   "dependencies": {
