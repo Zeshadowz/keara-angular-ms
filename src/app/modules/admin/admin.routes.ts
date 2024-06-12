@@ -1,6 +1,6 @@
 import { Route } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
-import { EmployeesComponent } from "./employees/employees.component";
+import { EmployeesComponent } from "./employee/employees.component";
 
 export const ADMIN_ROUTE: Route[] = [
   {
@@ -11,11 +11,17 @@ export const ADMIN_ROUTE: Route[] = [
   {
     path: 'home',
     title: 'Home',
+    data: {
+      breadcrumb: null
+    },
     component: HomeComponent
   },
   {
-    path: 'employees',
+    path: 'employee',
     title: 'Employees',
+    data: {
+      breadcrumb: 'Employees'
+    },
     component: EmployeesComponent
   }
 ]

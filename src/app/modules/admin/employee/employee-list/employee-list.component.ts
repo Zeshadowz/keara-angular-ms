@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, DestroyRef, inject, Inject, OnInit, Renderer2 } from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -24,6 +24,9 @@ import { MatIconButton, MatMiniFabButton } from "@angular/material/button";
 import { MatPaginator } from "@angular/material/paginator";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DOCUMENT } from "@angular/common";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { filter } from "rxjs";
+import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/breadcrumb.component";
 
 @Component({
   selector: 'app-employee-list',
@@ -48,7 +51,8 @@ import { DOCUMENT } from "@angular/common";
     MatLabel,
     MatPrefix,
     MatIconButton,
-    MatPaginator
+    MatPaginator,
+    BreadcrumbComponent
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
@@ -70,10 +74,13 @@ export class EmployeeListComponent implements OnInit {
   dataSource: MatTableDataSource<EmployeeMain>;
   selection = new SelectionModel<EmployeeMain>(true, []);
 
+  router: Router = inject(Router);
+
   constructor(
     private empService: EmployeeService,
     private renderer: Renderer2,
     private destroyRef: DestroyRef,
+    private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document,
   ) {
     this.dataSource = new MatTableDataSource<EmployeeMain>();
@@ -82,7 +89,10 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => console.log(this.route.root))
+    
     this.selection.changed
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((data) => {

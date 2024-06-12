@@ -20,7 +20,7 @@ export const SIDEBAR_ITEMS: SidebarMetadata[] = [
     submenu: []
   },
   {
-    path: 'employees',
+    path: 'employee',
     title: 'Employees',
     iconType: 'material-icons-outlined',
     icon: 'person',

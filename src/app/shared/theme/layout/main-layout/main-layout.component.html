@@ -5,6 +5,7 @@
     <kea-sidebar [collapsed]="isSidebarCollapsed()"/>
   </mat-sidenav>
   <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <kea-breadcrumb/>
     <router-outlet/>
   </mat-sidenav-content>
 </mat-sidenav-container>
