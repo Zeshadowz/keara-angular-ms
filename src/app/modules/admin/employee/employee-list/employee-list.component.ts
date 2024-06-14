@@ -24,7 +24,7 @@ import { MatIconButton, MatMiniFabButton } from "@angular/material/button";
 import { MatPaginator } from "@angular/material/paginator";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DOCUMENT } from "@angular/common";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from "@angular/router";
 import { filter } from "rxjs";
 import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/breadcrumb.component";
 
@@ -52,7 +52,8 @@ import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/br
     MatPrefix,
     MatIconButton,
     MatPaginator,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    RouterLink
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
@@ -92,7 +93,7 @@ export class EmployeeListComponent implements OnInit {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => console.log(this.route.root))
-    
+
     this.selection.changed
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((data) => {
@@ -102,8 +103,9 @@ export class EmployeeListComponent implements OnInit {
       })
   }
 
-  loadData() {
-    this.empService.getAll().subscribe(data => this.dataSource.data = data)
+  private loadData() {
+    this.empService.getAll()
+      .subscribe(data => this.dataSource.data = data)
   }
 
   applyFilter(event: Event) {
@@ -137,7 +139,9 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addNew() {
-    console.log('Add new employee')
+    console.log('Add new employee...')
+    this.router.navigate(['add'], {relativeTo: this.route});
+    console.log('...')
   }
 
   refresh() {

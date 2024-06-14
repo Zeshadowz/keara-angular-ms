@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 })
 export class EmployeeApi {
 
-  private readonly API = environment.endpoint_api + '/employee'
+  private readonly API = environment.endpoint_api + '/employees'
 
   constructor(
     private http: HttpClient
