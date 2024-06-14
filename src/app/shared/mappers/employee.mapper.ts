@@ -16,7 +16,7 @@ export class EmployeeMapper {
       firstname: employee.firstname,
       lastname: employee.lastname,
       email: employee.email,
-      dateOfBirth: employee.dateOfBirth.toDateString(),
+      dateOfBirth: employee.dateOfBirth + '',
       phone: employee.phone,
       position: employee.position,
       active: employee.active,

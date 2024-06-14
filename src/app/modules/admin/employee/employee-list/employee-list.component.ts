@@ -24,9 +24,10 @@ import { MatIconButton, MatMiniFabButton } from "@angular/material/button";
 import { MatPaginator } from "@angular/material/paginator";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DOCUMENT } from "@angular/common";
-import { ActivatedRoute, NavigationEnd, Router, RouterLink } from "@angular/router";
-import { filter } from "rxjs";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/breadcrumb.component";
+import { MatCardModule } from "@angular/material/card";
+import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.component";
 
 @Component({
   selector: 'app-employee-list',
@@ -53,7 +54,9 @@ import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/br
     MatIconButton,
     MatPaginator,
     BreadcrumbComponent,
-    RouterLink
+    RouterLink,
+    MatCardModule,
+    WidgetsComponent
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
@@ -90,9 +93,10 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    this.router.events
+
+    /*this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => console.log(this.route.root))
+      .subscribe(() => console.log(this.route.root))*/
 
     this.selection.changed
       .pipe(takeUntilDestroyed(this.destroyRef))

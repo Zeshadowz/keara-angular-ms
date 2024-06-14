@@ -27,12 +27,8 @@ export class BreadcrumbComponent implements OnInit {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
-        //console.log('Sub', this.createBreadcrumbs(this.activatedRoute.root))
-        console.log('Root', this.activatedRoute.parent?.snapshot)
-        console.log('Root Parent', this.activatedRoute.root.parent?.url)
         this.menuItems = this.createBreadcrumbs(this.activatedRoute.root);
       })
-    //console.log("BC Init...")
   }
 
   // @ts-ignore
