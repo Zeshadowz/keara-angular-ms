@@ -26,6 +26,8 @@ import { MatTooltip } from "@angular/material/tooltip";
 import { EmployeeMain } from "../../../../shared/model/EmployeeMain.model";
 import { emailValidator, UniqueEmailValidator } from "../../../../shared/validators/email.validator";
 import { AuthService } from "../../../../core/auth/auth.service";
+import { EmployeeService } from "../../../../shared/services/employee.service";
+import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.component";
 
 @Component({
   selector: 'app-add-employee',
@@ -56,7 +58,8 @@ import { AuthService } from "../../../../core/auth/auth.service";
     MatRow,
     MatRowDef,
     MatTable,
-    MatTooltip
+    MatTooltip,
+    WidgetsComponent
   ],
   templateUrl: './add-employee.component.html',
   styleUrl: './add-employee.component.scss'
@@ -65,16 +68,15 @@ export class AddEmployeeComponent {
   title: string = '';
 
   basisDataForm: FormGroup<controlsOf<EmployeeMain>>;
-  i = 0;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private employeeService: EmployeeService) {
     this.basisDataForm = this.fb.group({
-      gender: fb.nonNullable.control('1', []),
+      gender: fb.nonNullable.control('', [Validators.required]),
       title: fb.nonNullable.control('', []),
       name: fb.nonNullable.control('', []),
       firstname: fb.nonNullable.control('poiuztr', [Validators.required]),
-      lastname: fb.nonNullable.control('ertzui', []),
-      dateOfBirth: fb.nonNullable.control('', []),
+      lastname: fb.nonNullable.control('ertzui', [Validators.required]),
+      dateOfBirth: fb.nonNullable.control('', [Validators.required]),
       position: fb.nonNullable.control('dfghjk', []),
       email: fb.nonNullable.control('arz@emil.de', [emailValidator], [UniqueEmailValidator(this.authService)]),
       phone: fb.nonNullable.control('456789', []),
@@ -84,9 +86,8 @@ export class AddEmployeeComponent {
 
   save() {
     if (this.basisDataForm.valid) {
-      this.i++;
-      const data = <EmployeeMain>this.basisDataForm.value;
-      console.log(this.i, data)
+      const employee = <EmployeeMain>this.basisDataForm.value;
+      this.employeeService.create(employee);
     }
   }
 

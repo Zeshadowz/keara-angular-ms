@@ -225,3 +225,30 @@ hr {
 
 /* End Auth SCSS */
 
+/** Start FORM **/
+.kea-form {
+  box-shadow: 0 0 0 !important;
+
+  .mat-mdc-card-content:first-child {
+    padding-top: 0;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+
+  .full {
+    justify-content: space-between;
+  }
+
+  .mid {
+
+  }
+}
+
+/** End FORM **/
+
