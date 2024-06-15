@@ -23,6 +23,18 @@
       "role": "admin",
       "terms": true,
       "id": "Cn1_Hcz"
+    },
+    {
+      "gender": "Male",
+      "title": "",
+      "firstname": "Karl",
+      "lastname": "Ruhe",
+      "email": "k.ruhe@kea.de",
+      "phone": "0123654789",
+      "password": "$Christel78#",
+      "role": "Guest",
+      "terms": true,
+      "id": "TjqGAip"
     }
   ],
   "employees": [
@@ -33,13 +45,11 @@
       "firstname": "Lydia",
       "lastname": "Williams",
       "email": "l.williams@kea.de",
-      "password": "$2a$10$JnE06Ay9GqkS4UREPDMJdONUjL0nBNBbLq0jpDyu5jjw7U3x2O.K2",
       "phone": "+4991112457897",
-      "active": true,
       "dateOfBirth": "",
       "position": "Developer",
       "salary": 5000,
-      "role": "user"
+      "active": true
     },
     {
       "id": "Cn2_Hcz",
@@ -48,13 +58,24 @@
       "firstname": "Yvan",
       "lastname": "Jones",
       "email": "y.jones@kea.de",
-      "password": "$2a$10$JnE06Ay9GqkS4UREPDMJdONUjL0nBNBbLq0jpDyu5jjw7U3x2O.K2",
       "phone": "+4991112457898",
-      "active": true,
       "dateOfBirth": "",
       "position": "Developer",
       "salary": 5000,
-      "role": "user"
+      "active": true
+    },
+    {
+      "id": "Im7JPZN",
+      "salary": 80000,
+      "gender": "Male",
+      "title": "",
+      "firstname": "Karl",
+      "lastname": "Ruhe",
+      "dateOfBirth": "1980-11-12",
+      "email": "k.ruhe@kea.de",
+      "phone": "0789654123",
+      "position": "Product Manager",
+      "active": false
     }
   ],
   "products": []

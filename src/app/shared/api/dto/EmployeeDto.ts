@@ -1,16 +1,14 @@
 export interface EmployeeDto {
-  id: number;
+  id: string;
   gender: string;
   title: string;
   firstname: string;
   lastname: string;
   email: string;
   phone: string;
-  password: string;
   active: boolean
-  dateOfBirth: Date;
+  dateOfBirth: string;
   position: string;
   salary: number;
-  role: string;
 }
 

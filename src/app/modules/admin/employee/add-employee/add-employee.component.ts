@@ -7,8 +7,8 @@ import { MatError, MatFormField, MatLabel, MatPrefix } from "@angular/material/f
 import { MatInput } from "@angular/material/input";
 import { MatOption } from "@angular/material/autocomplete";
 import { MatSelect } from "@angular/material/select";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { RouterLink } from "@angular/router";
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Router, RouterLink } from "@angular/router";
 import { controlsOf } from "../../../../utils/form/form-type.utils";
 import {
   MatCell,
@@ -24,10 +24,17 @@ import {
 import { MatIcon } from "@angular/material/icon";
 import { MatTooltip } from "@angular/material/tooltip";
 import { EmployeeMain } from "../../../../shared/model/EmployeeMain.model";
-import { emailValidator, UniqueEmailValidator } from "../../../../shared/validators/email.validator";
+import { emailValidator } from "../../../../shared/validators/email.validator";
 import { AuthService } from "../../../../core/auth/auth.service";
 import { EmployeeService } from "../../../../shared/services/employee.service";
 import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.component";
+import { Gender } from "../../../../shared/model/Gender.enum";
+import { Location } from '@angular/common';
+
+
+export interface Test {
+  firstname: AbstractControl;
+}
 
 @Component({
   selector: 'app-add-employee',
@@ -69,25 +76,37 @@ export class AddEmployeeComponent {
 
   basisDataForm: FormGroup<controlsOf<EmployeeMain>>;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private employeeService: EmployeeService) {
-    this.basisDataForm = this.fb.group({
-      gender: fb.nonNullable.control('', [Validators.required]),
+  constructor(
+    private location: Location,
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private employeeService: EmployeeService) {
+    this.basisDataForm = this.fb.group<controlsOf<EmployeeMain>>({
+      gender: fb.nonNullable.control<Gender>(Gender.FEMALE, [Validators.required]),
       title: fb.nonNullable.control('', []),
-      name: fb.nonNullable.control('', []),
       firstname: fb.nonNullable.control('poiuztr', [Validators.required]),
       lastname: fb.nonNullable.control('ertzui', [Validators.required]),
       dateOfBirth: fb.nonNullable.control('', [Validators.required]),
-      position: fb.nonNullable.control('dfghjk', []),
-      email: fb.nonNullable.control('arz@emil.de', [emailValidator], [UniqueEmailValidator(this.authService)]),
+      email: fb.nonNullable.control('arz@emil.de', [emailValidator]),
       phone: fb.nonNullable.control('456789', []),
+      position: fb.nonNullable.control('dfghjk', []),
+      salary: fb.nonNullable.control(300000, []),
       active: fb.nonNullable.control(false)
     });
+    this.basisDataForm.value.gender = undefined;
   }
 
   save() {
     if (this.basisDataForm.valid) {
-      const employee = <EmployeeMain>this.basisDataForm.value;
-      this.employeeService.create(employee);
+      let employee = <EmployeeMain>this.basisDataForm.value;
+      this.employeeService.save(employee).subscribe(
+        data => {
+          if (data) {
+            this.location.back();
+          }
+        }
+      );
     }
   }
 
@@ -98,4 +117,8 @@ export class AddEmployeeComponent {
   protected readonly titleList = titleList;
   protected readonly genderList = genderList;
   protected readonly roleList = roleList;
+
+  discard() {
+    this.location.back()
+  }
 }

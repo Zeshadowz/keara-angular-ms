@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { UserResourceService } from "../../shared/api/resources/user-resource.service";
+import { UserApi } from "../../shared/api/resources/user.api";
 import { RegisterModel } from "./model/register.model";
 import { map, Observable } from "rxjs";
 import { SignUpMapper } from "../../shared/mappers/sign-up.mapper";
@@ -8,14 +8,14 @@ import { SignUpMapper } from "../../shared/mappers/sign-up.mapper";
   providedIn: 'root'
 })
 export class RegisterService {
-  private readonly userResourceService = inject(UserResourceService);
+  private readonly userApi = inject(UserApi);
   private readonly registrationMapper = inject(SignUpMapper);
 
   constructor() {
   }
 
   addUser(signUpModel: RegisterModel): Observable<string> {
-    return this.userResourceService.addUser(this.registrationMapper.toDto(signUpModel))
+    return this.userApi.addUser(this.registrationMapper.toDto(signUpModel))
       .pipe(map(data => data.id))
     /*.subscribe({
       next: data => console.log(JSON.stringify(data)),

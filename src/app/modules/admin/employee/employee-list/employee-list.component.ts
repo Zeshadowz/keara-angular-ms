@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, Inject, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, inject, Inject, OnInit, Renderer2 } from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -24,7 +24,7 @@ import { MatIconButton, MatMiniFabButton } from "@angular/material/button";
 import { MatPaginator } from "@angular/material/paginator";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DOCUMENT } from "@angular/common";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { ActivatedRoute, Event, Router, RouterLink } from "@angular/router";
 import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/breadcrumb.component";
 import { MatCardModule } from "@angular/material/card";
 import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.component";
@@ -61,7 +61,7 @@ import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
-export class EmployeeListComponent implements OnInit {
+export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   matIconDelete: HTMLElement | null = null;
 
@@ -87,16 +87,19 @@ export class EmployeeListComponent implements OnInit {
     private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document,
   ) {
+    console.log('Constructor')
     this.dataSource = new MatTableDataSource<EmployeeMain>();
     this.matIconDelete = this.document.getElementById("deleteIcon");
   }
 
   ngOnInit(): void {
+    console.log('ngOnInit')
     this.loadData();
 
     /*this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => console.log(this.route.root))*/
+    console.log(this.matIconDelete)
 
     this.selection.changed
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -113,8 +116,8 @@ export class EmployeeListComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    //const filterValue = (event.target as HTMLInputElement).value;
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -143,9 +146,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addNew() {
-    console.log('Add new employee...')
     this.router.navigate(['add'], {relativeTo: this.route});
-    console.log('...')
   }
 
   refresh() {
@@ -160,5 +161,11 @@ export class EmployeeListComponent implements OnInit {
 
   exportExcel() {
 
+  }
+
+  ngAfterViewInit(): void {
+    console.log('After View Init...')
+    this.matIconDelete = this.document.getElementById("deleteIcon");
+    console.log(this.matIconDelete)
   }
 }

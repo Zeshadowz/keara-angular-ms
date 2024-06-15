@@ -19,21 +19,20 @@ export class EmployeeMapper {
       dateOfBirth: employee.dateOfBirth + '',
       phone: employee.phone,
       position: employee.position,
+      salary: employee.salary,
       active: employee.active,
     } as EmployeeMain;
   }
 
   public mainToDto(employee: EmployeeMain): EmployeeDto {
     return {
-      id: 0,
-      password: "",
-      role: "",
-      salary: 0,
-      gender: employee.gender,
+      id: '',
+      salary: employee.salary,
+      gender: employee.gender.valueOf(),
       title: employee.title,
       firstname: employee.firstname,
       lastname: employee.lastname,
-      dateOfBirth: new Date(employee.dateOfBirth),
+      dateOfBirth: employee.dateOfBirth,
       email: employee.email,
       phone: employee.phone,
       position: employee.position,

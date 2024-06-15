@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EmployeeApi } from "../api/resources/employee-api.";
-import { map } from "rxjs";
+import { map, Observable } from "rxjs";
 import { EmployeeMapper } from "../mappers/employee.mapper";
 import { EmployeeMain } from "../model/EmployeeMain.model";
 
@@ -15,13 +15,14 @@ export class EmployeeService {
 
   getAll() {
     return this.employeeApi.fetchAll().pipe(
-      map(data => data.map(employee => this.employeeMapper.dtoToMain(employee))),
+      map(results =>
+        results.map(employeeDto => this.employeeMapper.dtoToMain(employeeDto))
+      ),
     );
   }
 
-  create(employee: EmployeeMain) {
-    let employeeDto = this.employeeMapper.mainToDto(employee);
-    employeeDto.password = 'secret'
-    console.log('create', employeeDto);
+  save(employeeMain: EmployeeMain): Observable<string> {
+    return this.employeeApi.save(this.employeeMapper.mainToDto(employeeMain))
+      .pipe(map(employeeDto => employeeDto.id));
   }
 }

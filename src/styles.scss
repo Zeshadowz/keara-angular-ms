@@ -236,17 +236,18 @@ hr {
   .form-row {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 20px;
+    //flex-wrap: nowrap;
     margin-bottom: 10px;
   }
 
   .full {
     justify-content: space-between;
+    gap: 20px;
   }
 
   .mid {
-
+    width: 50%;
+    padding-right: 10px;
   }
 }
 

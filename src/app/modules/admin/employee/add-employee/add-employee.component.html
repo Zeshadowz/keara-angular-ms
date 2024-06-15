@@ -41,16 +41,11 @@
             </div>
 
             <!-- DoB and Position -->
-            <div class="form-row">
+            <div class="form-row mid">
               <mat-form-field appearance="outline">
                 <mat-label>Date of birth</mat-label>
                 <input matInput type="date" formControlName="dateOfBirth" required>
                 <mat-error>DoB is required</mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Position</mat-label>
-                <input matInput type="text" formControlName="position" required>
-                <mat-error>Position is required</mat-error>
               </mat-form-field>
             </div>
 
@@ -75,6 +70,20 @@
                 <mat-error>Phone is required</mat-error>
               </mat-form-field>
             </div>
+
+            <!-- Position & Salary -->
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Position</mat-label>
+                <input matInput type="text" formControlName="position" required>
+                <mat-error>Position is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Salary</mat-label>
+                <input matInput type="number" formControlName="salary" required>
+                <mat-error>Salary is required</mat-error>
+              </mat-form-field>
+            </div>
           </mat-card-content>
           <div class="form-call-to-action">
             <button mat-raised-button
@@ -82,6 +91,10 @@
                     class="sign-in-btn"
                     [disabled]="!basisDataForm.valid">
               Save
+            </button>
+            <button mat-raised-button
+                    class="sign-in-btn" (click)="discard()">
+              Cancel
             </button>
           </div>
         </form>
