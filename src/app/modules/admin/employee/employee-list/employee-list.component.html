@@ -5,7 +5,7 @@
         <div class="left">
           <mat-form-field appearance="fill">
             <mat-icon matPrefix>search</mat-icon>
-            <input matInput placeholder="Search..." #input>
+            <input matInput placeholder="Search..." #searchInput (keyup)="applyFilter()">
           </mat-form-field>
         </div>
         <div class="right">
@@ -24,7 +24,7 @@
           <div class="m-l-10" matTooltip="Delete">
             <button mat-icon-button color="warn"
                     [disabled]="!selection.hasValue()"
-                    (click)="removeSelectedRows()" routerLink="/neu">
+                    (click)="removeSelectedRows()">
               <mat-icon #deleteIcon id="deleteIcon" class="col-disabled">delete</mat-icon>
             </button>
           </div>

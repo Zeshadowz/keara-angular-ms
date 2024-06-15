@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, DestroyRef, inject, Inject, OnInit, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  Inject,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -24,7 +34,7 @@ import { MatIconButton, MatMiniFabButton } from "@angular/material/button";
 import { MatPaginator } from "@angular/material/paginator";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DOCUMENT } from "@angular/common";
-import { ActivatedRoute, Event, Router, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/breadcrumb.component";
 import { MatCardModule } from "@angular/material/card";
 import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.component";
@@ -63,6 +73,8 @@ import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.
 })
 export class EmployeeListComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('searchInput') searchInput!: ElementRef;
+
   matIconDelete: HTMLElement | null = null;
 
   displayedColumns = [
@@ -87,19 +99,16 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document,
   ) {
-    console.log('Constructor')
     this.dataSource = new MatTableDataSource<EmployeeMain>();
-    this.matIconDelete = this.document.getElementById("deleteIcon");
+    this.loadData();
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit')
-    this.loadData();
+    //this.loadData();
 
     /*this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => console.log(this.route.root))*/
-    console.log(this.matIconDelete)
 
     this.selection.changed
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -112,11 +121,14 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   private loadData() {
     this.empService.getAll()
-      .subscribe(data => this.dataSource.data = data)
+      .subscribe(data => {
+        this.dataSource.data = data;
+      })
   }
 
-  applyFilter(event: Event) {
-    //const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter() {
+    // It works too.
+    //const filterValue = this.searchInput.nativeElement.value
     //this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -124,6 +136,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
+    //const numRows = this._dataSource().length
     return numSelected === numRows;
   }
 
@@ -164,8 +177,11 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('After View Init...')
     this.matIconDelete = this.document.getElementById("deleteIcon");
-    console.log(this.matIconDelete)
+
+    this.searchInput.nativeElement.onkeyup = () => {
+      const filteredData = this.searchInput.nativeElement.value
+      this.dataSource.filter = filteredData.trim().toLowerCase();
+    }
   }
 }
