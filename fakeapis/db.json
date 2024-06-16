@@ -76,6 +76,19 @@
       "phone": "0789654123",
       "position": "Product Manager",
       "active": false
+    },
+    {
+      "id": "tdM7drw",
+      "salary": 300000,
+      "gender": "Male",
+      "title": "Prof. Dr.",
+      "firstname": "Álbert",
+      "lastname": "Einstein",
+      "dateOfBirth": "1874-10-12",
+      "email": "a.einstein@kea.de",
+      "phone": "0123654789",
+      "position": "CEO",
+      "active": false
     }
   ],
   "products": []

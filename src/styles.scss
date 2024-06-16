@@ -228,16 +228,15 @@ hr {
 /** Start FORM **/
 .kea-form {
   box-shadow: 0 0 0 !important;
+  display: flex;
 
   .mat-mdc-card-content:first-child {
     padding-top: 0;
   }
 
-  .form-row {
+  .kea-form-row {
     display: flex;
     flex-direction: row;
-    //flex-wrap: nowrap;
-    margin-bottom: 10px;
   }
 
   .full {
@@ -248,6 +247,13 @@ hr {
   .mid {
     width: 50%;
     padding-right: 10px;
+  }
+
+  .kea-form-footer {
+    button {
+      margin-right: 20px;
+      width: 80px;
+    }
   }
 }
 

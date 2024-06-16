@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { genderList, roleList, titleList } from "../../../../core/constants/gender.constant";
 import { MatButton, MatIconButton } from "@angular/material/button";
-import { MatCard, MatCardContent, MatCardTitle } from "@angular/material/card";
+import { MatCard, MatCardContent, MatCardFooter, MatCardTitle } from "@angular/material/card";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { MatError, MatFormField, MatLabel, MatPrefix } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
@@ -66,7 +66,8 @@ export interface Test {
     MatRowDef,
     MatTable,
     MatTooltip,
-    WidgetsComponent
+    WidgetsComponent,
+    MatCardFooter
   ],
   templateUrl: './add-employee.component.html',
   styleUrl: './add-employee.component.scss'
