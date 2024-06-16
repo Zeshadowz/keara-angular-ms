@@ -1,0 +1,13 @@
+<mat-card appearance="outlined" class="wg-container">
+  <mat-card-header [hidden]="!isHeaded()" class="wg-header">
+    <mat-card-title>{{ getLabel() }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="wg-content">
+      <ng-content/>
+    </div>
+  </mat-card-content>
+  <mat-card-footer [hidden]="!isFooterRendered()" class="wg-footer">
+    Footer
+  </mat-card-footer>
+</mat-card>

@@ -1,4 +1,14 @@
-import { Component, DestroyRef, Inject, OnInit, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  Inject,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -24,6 +34,10 @@ import { MatIconButton, MatMiniFabButton } from "@angular/material/button";
 import { MatPaginator } from "@angular/material/paginator";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DOCUMENT } from "@angular/common";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/breadcrumb.component";
+import { MatCardModule } from "@angular/material/card";
+import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.component";
 
 @Component({
   selector: 'app-employee-list',
@@ -48,12 +62,18 @@ import { DOCUMENT } from "@angular/common";
     MatLabel,
     MatPrefix,
     MatIconButton,
-    MatPaginator
+    MatPaginator,
+    BreadcrumbComponent,
+    RouterLink,
+    MatCardModule,
+    WidgetsComponent
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
-export class EmployeeListComponent implements OnInit {
+export class EmployeeListComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('searchInput') searchInput!: ElementRef;
 
   matIconDelete: HTMLElement | null = null;
 
@@ -70,18 +90,25 @@ export class EmployeeListComponent implements OnInit {
   dataSource: MatTableDataSource<EmployeeMain>;
   selection = new SelectionModel<EmployeeMain>(true, []);
 
+  router: Router = inject(Router);
+
   constructor(
     private empService: EmployeeService,
     private renderer: Renderer2,
     private destroyRef: DestroyRef,
+    private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document,
   ) {
     this.dataSource = new MatTableDataSource<EmployeeMain>();
-    this.matIconDelete = this.document.getElementById("deleteIcon");
+    this.loadData();
   }
 
   ngOnInit(): void {
-    this.loadData();
+    //this.loadData();
+
+    /*this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => console.log(this.route.root))*/
 
     this.selection.changed
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -92,19 +119,24 @@ export class EmployeeListComponent implements OnInit {
       })
   }
 
-  loadData() {
-    this.empService.getAll().subscribe(data => this.dataSource.data = data)
+  private loadData() {
+    this.empService.getAll()
+      .subscribe(data => {
+        this.dataSource.data = data;
+      })
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    // It works too.
+    //const filterValue = this.searchInput.nativeElement.value
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
+    //const numRows = this._dataSource().length
     return numSelected === numRows;
   }
 
@@ -127,7 +159,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addNew() {
-    console.log('Add new employee')
+    this.router.navigate(['add'], {relativeTo: this.route});
   }
 
   refresh() {
@@ -142,5 +174,14 @@ export class EmployeeListComponent implements OnInit {
 
   exportExcel() {
 
+  }
+
+  ngAfterViewInit(): void {
+    this.matIconDelete = this.document.getElementById("deleteIcon");
+
+    this.searchInput.nativeElement.onkeyup = () => {
+      const filteredData = this.searchInput.nativeElement.value
+      this.dataSource.filter = filteredData.trim().toLowerCase();
+    }
   }
 }

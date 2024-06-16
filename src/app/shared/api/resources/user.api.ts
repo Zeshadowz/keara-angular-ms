@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class UserResourceService {
+export class UserApi {
   private basePath = env.endpoint_api + '/users';
 
   constructor(private http: HttpClient) {

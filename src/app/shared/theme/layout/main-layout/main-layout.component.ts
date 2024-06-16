@@ -6,6 +6,7 @@ import { MatIconButton } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import { HeaderComponent } from "../../components/header/header.component";
+import { BreadcrumbComponent } from "../../../components/breadcrumb/breadcrumb.component";
 
 @Component({
   selector: 'kea-main-layout',
@@ -17,7 +18,8 @@ import { HeaderComponent } from "../../components/header/header.component";
     MatIconButton,
     MatSidenavModule,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    BreadcrumbComponent
   ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'

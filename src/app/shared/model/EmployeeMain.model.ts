@@ -1,12 +1,14 @@
+import { Gender } from "./Gender.enum";
+
 export interface EmployeeMain {
-  id: number;
-  gender: string
-  title: string
-  name: string;
-  firstname: string
-  lastname: string
-  email: string
-  phone: string
-  position: string
-  active: boolean
+  gender: Gender;
+  title: string;
+  firstname: string;
+  lastname: string;
+  dateOfBirth: string;
+  email: string;
+  phone: string;
+  position: string;
+  salary: number;
+  active: boolean;
 }

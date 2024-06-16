@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "assets/scss/index";
+@import "styles/widgets";
 
 .col-white {
   color: #FFFFFF !important;
@@ -223,4 +224,38 @@ hr {
 }
 
 /* End Auth SCSS */
+
+/** Start FORM **/
+.kea-form {
+  box-shadow: 0 0 0 !important;
+  display: flex;
+
+  .mat-mdc-card-content:first-child {
+    padding-top: 0;
+  }
+
+  .kea-form-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .full {
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .mid {
+    width: 50%;
+    padding-right: 10px;
+  }
+
+  .kea-form-footer {
+    button {
+      margin-right: 20px;
+      width: 80px;
+    }
+  }
+}
+
+/** End FORM **/
 

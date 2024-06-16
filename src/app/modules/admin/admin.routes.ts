@@ -1,6 +1,5 @@
 import { Route } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
-import { EmployeesComponent } from "./employees/employees.component";
 
 export const ADMIN_ROUTE: Route[] = [
   {
@@ -11,11 +10,14 @@ export const ADMIN_ROUTE: Route[] = [
   {
     path: 'home',
     title: 'Home',
+    data: {
+      breadcrumb: 'Dashboard'
+    },
     component: HomeComponent
   },
   {
-    path: 'employees',
+    path: 'employee',
     title: 'Employees',
-    component: EmployeesComponent
+    loadChildren: () => import('./employee/admin-employee.routes').then(r => r.ADMIN_EMPLOYEE_ROUTE)
   }
 ]

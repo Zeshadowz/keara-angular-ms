@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <kea-widgets [label]="'Basis Data'">
+      <mat-card class="kea-form">
+        <form style="border: 0; box-shadow: 0 0 0 0;" [formGroup]="basisDataForm" (ngSubmit)="save()">
+          <mat-card-content style="border: 0 !important; box-shadow: 0 0 0 0;">
+            <!-- Gender & Title -->
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" required>
+                  @for (gender of genderList; track gender) {
+                    <mat-option [value]="gender">{{ gender }}</mat-option>
+                  }
+                </mat-select>
+                <mat-error>Gender is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <mat-select formControlName="title">
+                  <mat-option>None</mat-option>
+                  @for (title of titleList; track title) {
+                    <mat-option [value]="title">{{ title }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <!-- Firstname & Lastname -->
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" formControlName="firstname" required>
+                <mat-error>First name is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" formControlName="lastname" required>
+                <mat-error>Last name is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- DoB and Position -->
+            <div class="form-row mid">
+              <mat-form-field appearance="outline">
+                <mat-label>Date of birth</mat-label>
+                <input matInput type="date" formControlName="dateOfBirth" required>
+                <mat-error>DoB is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Email & Phone -->
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type="text" formControlName="email" required>
+                <mat-error>
+                  @if (isControlInvalid('email', 'required')) {
+                    Email address is required
+                  } @else if (isControlInvalid('email', 'pattern')) {
+                    Invalid email address
+                  } @else if (isControlInvalid('email', 'exists')) {
+                    Email already taken
+                  }
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput type="text" formControlName="phone" required>
+                <mat-error>Phone is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Position & Salary -->
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Position</mat-label>
+                <input matInput type="text" formControlName="position" required>
+                <mat-error>Position is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Salary</mat-label>
+                <input matInput type="number" formControlName="salary" required>
+                <mat-error>Salary is required</mat-error>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+          <mat-card-footer class="kea-form-row">
+            <div class="kea-form-footer">
+              <button mat-raised-button
+                      color="primary"
+                      class="sign-in-btn"
+                      [disabled]="!basisDataForm.valid">
+                Save
+              </button>
+              <button mat-raised-button
+                      class="sign-in-btn" (click)="discard()">
+                Cancel
+              </button>
+            </div>
+          </mat-card-footer>
+        </form>
+      </mat-card>
+    </kea-widgets>
+  </div>
+</div>

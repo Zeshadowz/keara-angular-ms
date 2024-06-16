@@ -43,8 +43,8 @@ export class SidebarComponent {
       route: 'home',
     }, {
       icon: 'person',
-      label: 'employees',
-      route: 'employees',
+      label: 'employee',
+      route: 'employee',
     }
   ])
 }

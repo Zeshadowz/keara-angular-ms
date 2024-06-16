@@ -1,13 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from "rxjs";
 import { UserDto } from "../../shared/api/dto/sign-up.dto";
-import { UserResourceService } from "../../shared/api/resources/user-resource.service";
+import { UserApi } from "../../shared/api/resources/user.api";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private readonly userResourceService = inject(UserResourceService);
+  private readonly userResourceService = inject(UserApi);
 
   constructor() {
   }
