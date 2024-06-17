@@ -84,6 +84,7 @@ export class AddEmployeeComponent {
     private authService: AuthService,
     private employeeService: EmployeeService) {
     this.basisDataForm = this.fb.group<controlsOf<EmployeeMain>>({
+      id: fb.nonNullable.control(''),
       gender: fb.nonNullable.control<Gender>(Gender.FEMALE, [Validators.required]),
       title: fb.nonNullable.control('', []),
       firstname: fb.nonNullable.control('poiuztr', [Validators.required]),

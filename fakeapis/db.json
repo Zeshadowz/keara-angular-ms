@@ -65,29 +65,16 @@
       "active": true
     },
     {
-      "id": "Im7JPZN",
-      "salary": 80000,
-      "gender": "Male",
-      "title": "",
-      "firstname": "Karl",
-      "lastname": "Ruhe",
-      "dateOfBirth": "1980-11-12",
-      "email": "k.ruhe@kea.de",
-      "phone": "0789654123",
-      "position": "Product Manager",
-      "active": false
-    },
-    {
-      "id": "tdM7drw",
+      "id": "HRtpPUo",
       "salary": 300000,
       "gender": "Male",
-      "title": "Prof. Dr.",
-      "firstname": "Álbert",
-      "lastname": "Einstein",
-      "dateOfBirth": "1874-10-12",
-      "email": "a.einstein@kea.de",
-      "phone": "0123654789",
-      "position": "CEO",
+      "title": "",
+      "firstname": "wwwwww",
+      "lastname": "ertzui",
+      "dateOfBirth": "0001-01-01",
+      "email": "arz@emil.de",
+      "phone": "456789",
+      "position": "dfghjk",
       "active": false
     }
   ],

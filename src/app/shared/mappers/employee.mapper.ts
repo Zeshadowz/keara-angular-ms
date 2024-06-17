@@ -26,7 +26,7 @@ export class EmployeeMapper {
 
   public mainToDto(employee: EmployeeMain): EmployeeDto {
     return {
-      id: '',
+      id: employee.id,
       salary: employee.salary,
       gender: employee.gender.valueOf(),
       title: employee.title,

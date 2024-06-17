@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EmployeeApi } from "../api/resources/employee-api.";
+import { EmployeeApi } from "../api/resources/employee-api";
 import { map, Observable } from "rxjs";
 import { EmployeeMapper } from "../mappers/employee.mapper";
 import { EmployeeMain } from "../model/EmployeeMain.model";
@@ -24,5 +24,10 @@ export class EmployeeService {
   save(employeeMain: EmployeeMain): Observable<string> {
     return this.employeeApi.save(this.employeeMapper.mainToDto(employeeMain))
       .pipe(map(employeeDto => employeeDto.id));
+  }
+
+  async remove(employee: EmployeeMain) {
+    const result = await this.employeeApi.remove(this.employeeMapper.mainToDto(employee));
+    return this.employeeMapper.dtoToMain(result);
   }
 }
