@@ -63,19 +63,6 @@
       "position": "Developer",
       "salary": 5000,
       "active": true
-    },
-    {
-      "id": "HRtpPUo",
-      "salary": 300000,
-      "gender": "Male",
-      "title": "",
-      "firstname": "wwwwww",
-      "lastname": "ertzui",
-      "dateOfBirth": "0001-01-01",
-      "email": "arz@emil.de",
-      "phone": "456789",
-      "position": "dfghjk",
-      "active": false
     }
   ],
   "products": []

@@ -164,6 +164,23 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.loadData();
   }
 
+  async removeSelectedRows() {
+    console.log('Start Removing Row');
+    for (const employee of this.selection.selected) {
+      console.log('removing ', employee.id, employee.firstname)
+      await this.empService.remove(employee)
+        .then(r => {
+          console.log('removed ', r.id, r.firstname);
+        }).catch(reason => {
+          console.error('Error removing ', employee.id, employee.firstname, reason);
+        });
+      console.log(' ')
+    }
+    console.log('Load data...')
+    this.selection.clear()
+    this.loadData()
+  }
+
   exportExcel() {
 
   }
