@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment as env } from "../../../../environments/environment";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { EmployeeDto } from "../dto/EmployeeDto";
-import { Observable } from "rxjs";
+import { lastValueFrom, Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +22,18 @@ export class EmployeeApi {
     return this.http.post<EmployeeDto>(this.basePath, employee, {
       headers: this.headers,
     });
+  }
+
+  delete(employee: EmployeeDto) {
+    const deletePath = this.basePath + '/' + employee.id;
+    console.log('deleting employee', deletePath);
+    return this.http.delete<EmployeeDto>(deletePath);
+  }
+
+  async remove(employee: EmployeeDto) {
+    const deletePath = this.basePath + '/' + employee.id;
+    console.log('Removing employee', deletePath);
+    const $request = this.http.delete<EmployeeDto>(deletePath);
+    return await lastValueFrom<EmployeeDto>($request)
   }
 }

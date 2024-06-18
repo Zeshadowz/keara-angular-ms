@@ -100,11 +100,10 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private document: Document,
   ) {
     this.dataSource = new MatTableDataSource<EmployeeMain>();
-    this.loadData();
   }
 
   ngOnInit(): void {
-    //this.loadData();
+    this.loadData();
 
     /*this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -136,7 +135,6 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
-    //const numRows = this._dataSource().length
     return numSelected === numRows;
   }
 
@@ -163,13 +161,24 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
   refresh() {
-    this.loadData()
+    this.loadData();
   }
 
-  removeSelectedRows() {
-    this.selection.selected.forEach((row: EmployeeMain) => {
-      console.log('delete', row);
-    })
+  async removeSelectedRows() {
+    console.log('Start Removing Row');
+    for (const employee of this.selection.selected) {
+      console.log('removing ', employee.id, employee.firstname)
+      await this.empService.remove(employee)
+        .then(r => {
+          console.log('removed ', r.id, r.firstname);
+        }).catch(reason => {
+          console.error('Error removing ', employee.id, employee.firstname, reason);
+        });
+      console.log(' ')
+    }
+    console.log('Load data...')
+    this.selection.clear()
+    this.loadData()
   }
 
   exportExcel() {
