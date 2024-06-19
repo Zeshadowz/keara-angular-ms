@@ -44,11 +44,12 @@
       "title": "Dr.",
       "firstname": "Lydia",
       "lastname": "Williams",
+      "middle_name": "",
       "email": "l.williams@kea.de",
       "phone": "+4991112457897",
       "dateOfBirth": "",
-      "position": "Developer",
-      "salary": 5000,
+      "marital_status": "",
+      "about_me": "",
       "active": true
     },
     {
@@ -57,91 +58,231 @@
       "title": "Dr.",
       "firstname": "Yvan",
       "lastname": "Jones",
+      "middle_name": "",
       "email": "y.jones@kea.de",
       "phone": "+4991112457898",
       "dateOfBirth": "",
-      "position": "Developer",
-      "salary": 5000,
+      "marital_status": "",
+      "about_me": "",
       "active": true
     },
     {
       "id": "rSbw8CH",
-      "salary": 300000,
       "gender": "Male",
       "title": "",
       "firstname": "Jonathan",
       "lastname": "Blackmon",
+      "middle_name": "",
       "dateOfBirth": "1996-10-10",
+      "marital_status": "",
+      "about_me": "",
       "email": "j.blackmon@kea.com",
       "phone": "+49948536475",
-      "position": "Marketing Manager",
       "active": false
     },
     {
       "id": "wqXf0YC",
-      "salary": 300000,
       "gender": "Male",
       "title": "",
       "firstname": "Robert",
+      "middle_name": "",
       "lastname": "Kinder",
       "dateOfBirth": "1997-10-10",
+      "marital_status": "",
+      "about_me": "",
       "email": "r.kinder@kea.com",
       "phone": "+4943784967",
-      "position": "Mobile App Developper",
       "active": false
     },
     {
       "id": "bU5CM2F",
-      "salary": 300000,
       "gender": "Male",
       "title": "",
       "firstname": "Fay",
       "lastname": "Sayer",
+      "middle_name": "",
       "dateOfBirth": "1978-10-10",
+      "marital_status": "",
+      "about_me": "",
       "email": "f.sayer@kea.com",
       "phone": "+49234567890",
-      "position": "PHP Developer",
       "active": false
     },
     {
       "id": "ziW8r0Z",
-      "salary": 300000,
       "gender": "Female",
       "title": "",
       "firstname": "Darlene",
       "lastname": "Larsen",
+      "middle_name": "",
       "dateOfBirth": "1956-10-10",
+      "marital_status": "",
+      "about_me": "",
       "email": "d.larsen@kea.com",
       "phone": "+4934567890",
-      "position": "Product Designer",
       "active": false
     },
     {
       "id": "T1kTjzW",
-      "salary": 300000,
       "gender": "Female",
       "title": "",
       "firstname": "Loida",
       "lastname": "Smith",
+      "middle_name": "",
       "dateOfBirth": "1997-10-10",
+      "marital_status": "",
+      "about_me": "",
       "email": "l.smith@kea.com",
       "phone": "+4934567890ß",
-      "position": "Product Manager",
       "active": false
     },
     {
       "id": "jWvb1zA",
-      "salary": 300000,
       "gender": "Female",
       "title": "",
       "firstname": "Wendell",
       "lastname": "Glover",
+      "middle_name": "",
       "dateOfBirth": "1977-10-10",
+      "marital_status": "",
+      "about_me": "",
       "email": "w.glover@kea.com",
       "phone": "+491234567890",
-      "position": "Sales and Marketing Head",
       "active": false
     }
   ],
-  "products": []
+  "employee_business_info": [
+    {
+      "id": "Cn1_Hcz",
+      "idx": "K123-4569",
+      "email": "l.williams@kea.com",
+      "phone": "+49123456789",
+      "hire_date": "",
+      "designation": "Scrum Master",
+      "reporting": "",
+      "working_typ": "",
+      "department": "Development"
+    },
+    {
+      "id": "Cn2_Hcz",
+      "idx": "K159-7412",
+      "email": "y.jones@kea.com",
+      "phone": "+49213456789",
+      "hire_date": "",
+      "designation": "Head of HR",
+      "reporting": "",
+      "working_typ": "",
+      "department": "Human Resources"
+    },
+    {
+      "id": "rSbw8CH",
+      "idx": "K147-5987",
+      "email": "j.blackmon",
+      "phone": "+4589652147",
+      "hire_date": "",
+      "designation": "Marketing Manager",
+      "reporting": "",
+      "working_typ": "",
+      "department": "Marketing"
+    },
+    {
+      "id": "wqXf0YC",
+      "idx": "K169-4587",
+      "email": "r.kinder@kea.com",
+      "phone": "+49412365987",
+      "hire_date": "",
+      "designation": "Mobile App Developer",
+      "reporting": "",
+      "working_typ": "",
+      "department": "Development"
+    },
+    {
+      "id": "bU5CM2F",
+      "idx": "K741-2580",
+      "email": "f.sayer@kea.com",
+      "phone": "+49512364987",
+      "hire_date": "",
+      "designation": "PHP Developer",
+      "reporting": "",
+      "working_typ": "",
+      "department": "Development"
+    },
+    {
+      "id": "ziW8r0Z",
+      "idx": "K258-3698",
+      "email": "d.larsen",
+      "phone": "+49654321987",
+      "hire_date": "",
+      "designation": "Product Designer",
+      "reporting": "",
+      "working_typ": "",
+      "department": "Design"
+    },
+    {
+      "id": "T1kTjzW",
+      "idx": "K369-1487",
+      "email": "s.loida@kea.com",
+      "phone": "+49798654123",
+      "hire_date": "",
+      "designation": "Product Manager",
+      "reporting": "",
+      "working_typ": "",
+      "department": "Development"
+    },
+    {
+      "id": "jWvb1zA",
+      "idx": "K785-2351",
+      "email": "w.glover@kea.com",
+      "phone": "+49879456213",
+      "hire_date": "",
+      "designation": "Sales, Marketing Head",
+      "reporting": "",
+      "working_typ": "",
+      "department": "Sales, Marketing"
+    }
+  ],
+  "employee_education": [
+    {
+      "id": "1234",
+      "degree": "",
+      "specialization": "",
+      "institute": "",
+      "start_date": "",
+      "end_date": "",
+      "emp_id": "Cn1_Hcz"
+    }
+  ],
+  "employee_experience": [],
+  "products": [],
+  "Address": [],
+  "department": [
+    {
+      "id": "1",
+      "name": "Marketing"
+    },
+    {
+      "id": "2",
+      "name": "Software Development"
+    },
+    {
+      "id": "3",
+      "name": "Sales"
+    },
+    {
+      "id": "4",
+      "name": "Design"
+    },
+    {
+      "id": "5",
+      "name": "Research"
+    },
+    {
+      "id": "6",
+      "name": "Customer Support"
+    },
+    {
+      "id": "7",
+      "name": "Human Resources"
+    }
+  ]
 }

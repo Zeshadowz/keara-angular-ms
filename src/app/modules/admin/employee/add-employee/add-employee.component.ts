@@ -89,11 +89,12 @@ export class AddEmployeeComponent {
       title: fb.nonNullable.control('', []),
       firstname: fb.nonNullable.control('poiuztr', [Validators.required]),
       lastname: fb.nonNullable.control('ertzui', [Validators.required]),
+      middleName: fb.nonNullable.control('ertzui', [Validators.required]),
       dateOfBirth: fb.nonNullable.control('0010-10-10', [Validators.required]),
+      maritalStatus: fb.nonNullable.control('', [Validators.required]),
+      aboutMe: fb.nonNullable.control('', [Validators.required]),
       email: fb.nonNullable.control('arz@emil.de', [emailValidator]),
       phone: fb.nonNullable.control('456789', []),
-      position: fb.nonNullable.control('dfghjk', []),
-      salary: fb.nonNullable.control(300000, []),
       active: fb.nonNullable.control(false)
     });
     this.basisDataForm.value.gender = undefined;

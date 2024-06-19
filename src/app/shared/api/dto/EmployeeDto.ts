@@ -4,11 +4,12 @@ export interface EmployeeDto {
   title: string;
   firstname: string;
   lastname: string;
+  middle_name: string;
+  dateOfBirth: string;
+  marital_status: string;
+  about_me: string;
   email: string;
   phone: string;
   active: boolean
-  dateOfBirth: string;
-  position: string;
-  salary: number;
 }
 

@@ -38,6 +38,7 @@ import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/breadcrumb.component";
 import { MatCardModule } from "@angular/material/card";
 import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.component";
+import { EmployeeInfo } from "../../../../shared/model/EmployeeInfo";
 
 @Component({
   selector: 'app-employee-list',
@@ -79,16 +80,15 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   displayedColumns = [
     'select',
-    'gender',
-    'title',
     'name',
+    'identifier',
+    'designation',
     'email',
     'phone',
-    'active',
-    'actions',
+    'department',
   ];
-  dataSource: MatTableDataSource<EmployeeMain>;
-  selection = new SelectionModel<EmployeeMain>(true, []);
+  dataSource: MatTableDataSource<EmployeeInfo>;
+  selection = new SelectionModel<EmployeeInfo>(true, []);
 
   router: Router = inject(Router);
 
@@ -99,7 +99,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document,
   ) {
-    this.dataSource = new MatTableDataSource<EmployeeMain>();
+    this.dataSource = new MatTableDataSource<EmployeeInfo>();
   }
 
   ngOnInit(): void {
@@ -119,8 +119,9 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
   private loadData() {
-    this.empService.getAll()
+    this.empService.fetchAllEmployeeInfos()
       .subscribe(data => {
+        console.log('Data', data)
         this.dataSource.data = data;
       })
   }
@@ -150,10 +151,11 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: EmployeeMain): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    // if (!row) {
+    //   return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    // }
+    // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row. + 1}`;
+    return '';
   }
 
   addNew() {
@@ -166,16 +168,16 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   async removeSelectedRows() {
     console.log('Start Removing Row');
-    for (const employee of this.selection.selected) {
-      console.log('removing ', employee.id, employee.firstname)
-      await this.empService.remove(employee)
-        .then(r => {
-          console.log('removed ', r.id, r.firstname);
-        }).catch(reason => {
-          console.error('Error removing ', employee.id, employee.firstname, reason);
-        });
-      console.log(' ')
-    }
+    // for (const employee of this.selection.selected) {
+    //   console.log('removing ', employee.id, employee.firstName)
+    //   await this.empService.remove(employee)
+    //     .then(r => {
+    //       console.log('removed ', r.id, r.firstName);
+    //     }).catch(reason => {
+    //       console.error('Error removing ', employee.id, employee.firstName, reason);
+    //     });
+    //   console.log(' ')
+    // }
     console.log('Load data...')
     this.selection.clear()
     this.loadData()

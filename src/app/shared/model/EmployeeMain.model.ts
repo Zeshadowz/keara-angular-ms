@@ -6,10 +6,11 @@ export interface EmployeeMain {
   title: string;
   firstname: string;
   lastname: string;
+  middleName: string;
   dateOfBirth: string;
+  maritalStatus: string;
+  aboutMe: string;
   email: string;
   phone: string;
-  position: string;
-  salary: number;
   active: boolean;
 }
