@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   ElementRef,
@@ -40,6 +41,15 @@ import { MatCardModule } from "@angular/material/card";
 import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.component";
 import { EmployeeInfo } from "../../../../shared/model/EmployeeInfo";
 import { mergeMap } from "rxjs";
+import {
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle
+} from "@angular/material/dialog";
+import { KeaDialogComponent } from "../../../../shared/components/dialog/kea-dialog.component";
 
 @Component({
   selector: 'app-employee-list',
@@ -68,8 +78,13 @@ import { mergeMap } from "rxjs";
     BreadcrumbComponent,
     RouterLink,
     MatCardModule,
-    WidgetsComponent
+    WidgetsComponent,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogContent,
+    MatDialogTitle
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
@@ -98,6 +113,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private destroyRef: DestroyRef,
     private route: ActivatedRoute,
+    private _dialog: MatDialog,
     @Inject(DOCUMENT) private document: Document,
   ) {
     this.dataSource = new MatTableDataSource<EmployeeInfo>();
@@ -171,9 +187,22 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
   async removeSelectedRows() {
-    for (const employee of this.selection.selected) {
-      console.log(employee)
-    }
+    const dialogRef: MatDialogRef<KeaDialogComponent> = this._dialog.open(KeaDialogComponent, {
+      width: '250px',
+      enterAnimationDuration: '0ms',
+      exitAnimationDuration: '0ms'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        for (const employee of this.selection.selected) {
+          console.log(employee)
+        }
+        console.log('Load data...')
+        this.selection.clear()
+        this.refresh()
+      }
+    })
+
     // for (const employee of this.selection.selected) {
     //   console.log('removing ', employee.id, employee.firstName)
     //   await this.empService.remove(employee)
@@ -184,9 +213,6 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     //     });
     //   console.log(' ')
     // }
-    console.log('Load data...')
-    this.selection.clear()
-    this.refresh()
   }
 
   exportExcel() {
