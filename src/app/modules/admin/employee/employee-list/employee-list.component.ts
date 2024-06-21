@@ -39,6 +39,7 @@ import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/br
 import { MatCardModule } from "@angular/material/card";
 import { WidgetsComponent } from "../../../../shared/components/widgets/widgets.component";
 import { EmployeeInfo } from "../../../../shared/model/EmployeeInfo";
+import { mergeMap } from "rxjs";
 
 @Component({
   selector: 'app-employee-list',
@@ -163,11 +164,16 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
   refresh() {
-    this.loadData();
+    this.empService.fetchAllEmployeeInfos()
+      .pipe(mergeMap((data) => [
+        this.dataSource.data = data
+      ]))
   }
 
   async removeSelectedRows() {
-    console.log('Start Removing Row');
+    for (const employee of this.selection.selected) {
+      console.log(employee)
+    }
     // for (const employee of this.selection.selected) {
     //   console.log('removing ', employee.id, employee.firstName)
     //   await this.empService.remove(employee)
@@ -180,7 +186,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     // }
     console.log('Load data...')
     this.selection.clear()
-    this.loadData()
+    this.refresh()
   }
 
   exportExcel() {
