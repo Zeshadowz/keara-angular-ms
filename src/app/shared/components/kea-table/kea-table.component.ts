@@ -17,6 +17,10 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { MatIcon } from "@angular/material/icon";
 import { NgClass, NgForOf, NgIf } from "@angular/common";
+import { MatFormField, MatPrefix } from "@angular/material/form-field";
+import { MatIconButton } from "@angular/material/button";
+import { MatInput } from "@angular/material/input";
+import { MatTooltip } from "@angular/material/tooltip";
 
 @Component({
   selector: 'kea-table',
@@ -30,7 +34,12 @@ import { NgClass, NgForOf, NgIf } from "@angular/common";
     MatPaginator,
     MatSort,
     NgIf,
-    NgForOf
+    NgForOf,
+    MatFormField,
+    MatIconButton,
+    MatInput,
+    MatPrefix,
+    MatTooltip
   ],
   templateUrl: './kea-table.component.html',
   styleUrl: './kea-table.component.scss'
@@ -150,6 +159,15 @@ export class KeaTableComponent implements OnInit, AfterViewInit, OnChanges {
   /** Highlights the selected row on row click. */
   highlight(row: any) {
     this.selectedRowIndex = row.position;
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: any): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row. + 1}`;
+    return '';
   }
 
 
