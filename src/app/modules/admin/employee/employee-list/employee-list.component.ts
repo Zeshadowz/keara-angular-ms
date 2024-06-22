@@ -8,6 +8,7 @@ import {
   Inject,
   OnInit,
   Renderer2,
+  TemplateRef,
   ViewChild
 } from '@angular/core';
 import {
@@ -49,7 +50,12 @@ import {
   MatDialogRef,
   MatDialogTitle
 } from "@angular/material/dialog";
-import { KeaDialogComponent } from "../../../../shared/components/dialog/kea-dialog.component";
+import { DialogData, KeaDialogComponent } from "../../../../shared/components/dialog/kea-dialog.component";
+import { KeaTableComponent } from "../../../../shared/components/kea-table/kea-table.component";
+import {
+  ColumnSettingsModel,
+  KeaTablePaginationSettingsModel
+} from "../../../../shared/components/kea-table/kea-table-settings.model";
 
 @Component({
   selector: 'app-employee-list',
@@ -82,7 +88,8 @@ import { KeaDialogComponent } from "../../../../shared/components/dialog/kea-dia
     MatDialogActions,
     MatDialogClose,
     MatDialogContent,
-    MatDialogTitle
+    MatDialogTitle,
+    KeaTableComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './employee-list.component.html',
@@ -91,6 +98,7 @@ import { KeaDialogComponent } from "../../../../shared/components/dialog/kea-dia
 export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   @ViewChild('searchInput') searchInput!: ElementRef;
+  @ViewChild('dataDialogTemplate') dataTemplate!: TemplateRef<any>;
 
   matIconDelete: HTMLElement | null = null;
 
@@ -108,6 +116,37 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   router: Router = inject(Router);
 
+
+  columnDefinition: ColumnSettingsModel[] = [];
+  tablePaginationSettings: KeaTablePaginationSettingsModel = <KeaTablePaginationSettingsModel>{};
+
+  rowData = [
+    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+    {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
+    {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
+    {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
+    {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
+    {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
+    {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
+    {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
+    {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
+    {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
+    {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
+  ];
+
+  onNotifySelected(selectedRows: object[]) {
+    console.log(selectedRows)
+  }
+
   constructor(
     private empService: EmployeeService,
     private renderer: Renderer2,
@@ -117,6 +156,8 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private document: Document,
   ) {
     this.dataSource = new MatTableDataSource<EmployeeInfo>();
+    this.testTableSettings();
+    this.employeeTableSettings()
   }
 
   ngOnInit(): void {
@@ -168,9 +209,9 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: EmployeeMain): string {
-    // if (!row) {
-    //   return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    // }
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
     // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row. + 1}`;
     return '';
   }
@@ -190,29 +231,26 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     const dialogRef: MatDialogRef<KeaDialogComponent> = this._dialog.open(KeaDialogComponent, {
       width: '250px',
       enterAnimationDuration: '0ms',
-      exitAnimationDuration: '0ms'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        for (const employee of this.selection.selected) {
-          console.log(employee)
-        }
-        console.log('Load data...')
-        this.selection.clear()
-        this.refresh()
+      exitAnimationDuration: '0ms',
+      data: <DialogData>{
+        title: 'Delete selected employee',
+        dialogContent: this.dataTemplate,
+        acceptButtonText: 'Yes, delete it!',
+        denyButtonText: 'No, delete it!'
       }
-    })
+    });
+    dialogRef.componentInstance.title = 'Delete Employee Info';
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) return;
 
-    // for (const employee of this.selection.selected) {
-    //   console.log('removing ', employee.id, employee.firstName)
-    //   await this.empService.remove(employee)
-    //     .then(r => {
-    //       console.log('removed ', r.id, r.firstName);
-    //     }).catch(reason => {
-    //       console.error('Error removing ', employee.id, employee.firstName, reason);
-    //     });
-    //   console.log(' ')
-    // }
+      for (const employee of this.selection.selected) {
+        console.log(employee)
+      }
+      console.log('Load data...')
+      this.selection.clear()
+      this.refresh()
+
+    })
   }
 
   exportExcel() {
@@ -226,5 +264,83 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
       const filteredData = this.searchInput.nativeElement.value
       this.dataSource.filter = filteredData.trim().toLowerCase();
     }
+  }
+
+  private testTableSettings() {
+    this.tablePaginationSettings.enablePagination = true;
+    this.tablePaginationSettings.pageSize = 5;
+    this.tablePaginationSettings.pageSizeOptions = [5, 10, 15];
+    this.tablePaginationSettings.showFirstLastButtons = true;
+    this.columnDefinition = [
+      {
+        'name': 'position',
+        'displayName': 'No',
+        'disableSorting': false,
+      },
+      {
+        'name': 'name',
+        'displayName': 'Name',
+        'disableSorting': false,
+        'icon': 'face'
+
+      },
+      {
+        'name': 'weight',
+        'displayName': 'Weight',
+        'disableSorting': false,
+        'icon': 'home'
+      },
+      {
+        'name': 'symbol',
+        'displayName': 'Symbol',
+        'disableSorting': false,
+        'icon': 'face'
+      },
+    ]
+  }
+
+  private employeeTableSettings() {
+    this.tablePaginationSettings.enablePagination = true;
+    this.tablePaginationSettings.pageSize = 5;
+    this.tablePaginationSettings.pageSizeOptions = [5, 10, 15];
+    this.tablePaginationSettings.showFirstLastButtons = true;
+    this.columnDefinition = [
+      {
+        'name': 'name',
+        'displayName': 'Name',
+        'disableSorting': false,
+      },
+      {
+        'name': 'identifier',
+        'displayName': 'ID',
+        'disableSorting': false,
+        'icon': 'face'
+
+      },
+      {
+        'name': 'designation',
+        'displayName': 'Designation',
+        'disableSorting': false,
+        'icon': 'home'
+      },
+      {
+        'name': 'email',
+        'displayName': 'Email',
+        'disableSorting': false,
+        'icon': 'face'
+      },
+      {
+        'name': 'phone',
+        'displayName': 'Phone',
+        'disableSorting': false,
+        'icon': 'face'
+      },
+      {
+        'name': 'department',
+        'displayName': 'Department',
+        'disableSorting': false,
+        'icon': 'face'
+      },
+    ]
   }
 }

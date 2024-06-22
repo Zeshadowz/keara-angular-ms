@@ -29,14 +29,11 @@ export class EmployeeMapper {
     return {
       id: employee.id,
       identifier: '',
-      gender: employee.gender,
-      title: employee.title,
-      firstName: employee.firstname,
-      lastName: employee.lastname,
+      name: employee.gender + ' ' + employee.title + ' ' + employee.firstname + ' ' + employee.lastname,
       middleName: employee.middle_name,
-      phone: "1",
-      email: "2",
-      department: "3"
+      phone: "",
+      email: "",
+      department: ""
     } as EmployeeInfo;
   }
 
