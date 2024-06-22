@@ -125,33 +125,21 @@
         </table>
       </div>
     </div>
-    <!--    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 keaTable">-->
-    <!--      <div class="keaTableHeader">-->
-
-    <!--      </div>-->
-    <!--      <div class="body overflow-auto">-->
-    <!--        <kea-table [rowData]="rowData"-->
-    <!--                   [enableCheckbox]="true"-->
-    <!--                   [allowMultiSelect]="true"-->
-    <!--                   (getSelectedRows)="onNotifySelected($event)"-->
-    <!--                   [sqPaginationConfig]="tablePaginationSettings"-->
-    <!--                   [sqColumnDefinition]="columnDefinition"-->
-    <!--        />-->
-    <!--      </div>-->
-    <!--    </div>-->
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 keaTable">
       <div class="keaTableHeader">
 
       </div>
       <div class="body overflow-auto">
         <kea-table [rowData]="dataSource.data"
-                   [enableCheckbox]="true"
-                   [allowMultiSelect]="true"
-                   [disableSorting]="true"
+                   [enableSearch]=true
+                   [enableCheckbox]=true
+                   [allowMultiSelect]=true
+                   [disableSorting]=true
                    (getSelectedRows)="onNotifySelected($event)"
                    [sqPaginationConfig]="tablePaginationSettings"
                    [sqColumnDefinition]="columnDefinition"
         />
+        <!--                   (filterEvent)="applyFilter2($event)"-->
       </div>
     </div>
   </div>

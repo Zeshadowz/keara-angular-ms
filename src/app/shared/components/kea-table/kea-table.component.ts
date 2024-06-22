@@ -1,8 +1,11 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   EventEmitter,
+  input,
   Input,
+  InputSignal,
   OnChanges,
   OnInit,
   Output,
@@ -16,11 +19,12 @@ import { MatSort, MatSortHeader } from "@angular/material/sort";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { MatIcon } from "@angular/material/icon";
-import { NgClass, NgForOf, NgIf } from "@angular/common";
+import { NgClass, NgForOf, NgIf, UpperCasePipe } from "@angular/common";
 import { MatFormField, MatPrefix } from "@angular/material/form-field";
 import { MatIconButton } from "@angular/material/button";
 import { MatInput } from "@angular/material/input";
 import { MatTooltip } from "@angular/material/tooltip";
+import { CapitalizePipe } from "../../pipes/capitalize.pipe.pipe";
 
 @Component({
   selector: 'kea-table',
@@ -39,18 +43,35 @@ import { MatTooltip } from "@angular/material/tooltip";
     MatIconButton,
     MatInput,
     MatPrefix,
-    MatTooltip
+    MatTooltip,
+    UpperCasePipe,
+    CapitalizePipe
   ],
   templateUrl: './kea-table.component.html',
   styleUrl: './kea-table.component.scss'
 })
 export class KeaTableComponent implements OnInit, AfterViewInit, OnChanges {
 
+  //** TABLE HEADER **//
+
+  /**
+   * @description `enableSearch` is configuration to enable Search/Filter in the table
+   */
+  enableSearch: InputSignal<boolean> = input<boolean>(false);
+  /**
+   * @description is a configuration to read the input of the search box
+   */
+  @ViewChild('searchInput') searchInput: ElementRef;
+
+
   selectedRowIndex = -1;
   /**
    * @description Column names for the table
    */
   columnNames: string[] = [];
+  /**
+   * @description Allowing/Dis-allowing multi-selection of rows
+   */
   @Input() enableCheckbox: boolean = false;
   /**
    * @description Allowing/Dis-allowing multi-selection of rows
@@ -93,6 +114,7 @@ export class KeaTableComponent implements OnInit, AfterViewInit, OnChanges {
    */
   @Output() getSelectedRows = new EventEmitter();
 
+
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -105,7 +127,7 @@ export class KeaTableComponent implements OnInit, AfterViewInit, OnChanges {
    * Lifecycle hook that is called when any data-bound property of a datasource changes.
    */
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['selectedRowIndex']);
+    console.log('Onchange', changes['selectedRowIndex']);
     this.dataSource = new MatTableDataSource(this.rowData);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -122,7 +144,7 @@ export class KeaTableComponent implements OnInit, AfterViewInit, OnChanges {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
+      this.selection.select(...this.dataSource.data);
     this.getSelectedRows.emit(this.selection.selected);
 
   }
@@ -154,6 +176,7 @@ export class KeaTableComponent implements OnInit, AfterViewInit, OnChanges {
     // Setting selection model
     this.selection = new SelectionModel<{}>(this.allowMultiSelect, []);
     this.dataSource = new MatTableDataSource(this.rowData);
+
   }
 
   /** Highlights the selected row on row click. */
@@ -166,9 +189,19 @@ export class KeaTableComponent implements OnInit, AfterViewInit, OnChanges {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row. + 1}`;
-    return '';
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row + 1}`;
   }
 
+  applyFilter() {
+    const filteredValue = this.searchInput.nativeElement.value;
+    this.dataSource.filter = filteredValue.trim().toLowerCase();
+  }
 
+  enableHeader() {
+    return this.enableSearch();
+  }
+
+  deleteSelected() {
+    console.log(this.selection.selected)
+  }
 }
